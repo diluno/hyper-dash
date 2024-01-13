@@ -1,0 +1,13 @@
+
+body {
+  margin: 0;
+  font-family: Helvetica, sans-serif;
+}
+#app {
+  max-width: 720px;
+  min-height: 720px;
+  padding: 2rem;
+  box-sizing: border-box;
+  background: #FFF9E9;
+  position: relative;
+}
