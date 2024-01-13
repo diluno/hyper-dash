@@ -19,12 +19,11 @@ function checkEntities() {
   });
 }
 
-const co2Emoji = computed(() => {
-  if (co2.value < 800) return '🟢';
-  if (co2.value < 1000) return '🟡';
-  if (co2.value < 1400) return '🟠';
-  if (co2.value < 2000) return '🔴';
-  return '🚨';
+const co2Color = computed(() => {
+  if(co2.value < 800) return '#00E400';
+  if(co2.value < 1000) return '#FFFF00';
+  if(co2.value < 1400) return '#FF7E00';
+  return '#FF0000';
 });
 
 const tempEmoji = computed(() => {
@@ -44,19 +43,17 @@ checkEntities();
 <template>
   <div class="container"
        style="--bubble-color: #BCEEF8;">
-    <div class="bubble bubble--large"><i>{{ co2Emoji }}</i>{{ co2 }}<sup>ppm</sup></div>
+    <div class="bubble bubble--large"><i class="co2"></i>{{ co2 }}<sup>ppm</sup></div>
     <div class="bubble bubble--large"><i>{{ tempEmoji }}</i>{{ temp }}<sup>°C</sup></div>
     <div class="bubble bubble--large"><i>💧</i>{{ humidity }}<sup>%</sup></div>
   </div>
 </template>
 
 <style lang="scss">
-.cover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.co2 {
+  background: v-bind(co2Color);
+  width: 1rem;
+  height: 1rem;
+  border-radius: 99%;
 }
 </style>

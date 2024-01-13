@@ -43,8 +43,8 @@ body {
 .bubble i {
   display: block;
   position: absolute;
-  top: -.25rem;
-  left: -.5rem;
+  top: -.2rem;
+  left: -.2rem;
   font-style: normal;
   font-size: .75em;
 }
