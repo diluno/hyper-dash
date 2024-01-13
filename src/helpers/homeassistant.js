@@ -4,7 +4,7 @@ class HomeAssistant {
     this.token =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2ZDM5NGE5N2VhYTM0ZmJiYWY0MDFiYTMzZjRhZjFiYyIsImlhdCI6MTcwNTA5NDM2MywiZXhwIjoyMDIwNDU0MzYzfQ.91RstDHi9OG1U0_OFWudSjaNGzTo5RWX2laKbhIFZMU';
   }
-  async getPlayerState(entityId) {
+  async getEntityState(entityId) {
     const url = `${this.baseUrl}/states/${entityId}`;
     const response = await fetch(url, {
       method: 'GET',

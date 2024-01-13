@@ -1,13 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope&family=Quicksand:wght@600&display=swap');
 
+html {
+  font-size: 24px;
+}
 body {
   margin: 0;
-  font-family: Helvetica, sans-serif;
+  font-family: Manrope, Helvetica, sans-serif;
 }
 #app {
   max-width: 720px;
   min-height: 720px;
-  padding: 2rem;
+  /* padding: 1rem; */
   box-sizing: border-box;
-  background: #FFF9E9;
+  background: #fff9e9;
   position: relative;
+}
+
+.container {
+  --bubble-color: #aff;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 1rem;
+}
+.bubble {
+  display: block;
+  background-color: var(--bubble-color);
+  padding: 0.5em 1.5em;
+  border-radius: 1em;
 }

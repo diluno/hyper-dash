@@ -3,6 +3,8 @@ import HomeAssistant from '../helpers/homeassistant.js';
 import { ref } from 'vue';
 const homeassistant = new HomeAssistant();
 
+const props = defineProps(['show']);
+
 const coverUrl = ref('');
 const hasCover = ref(false);
 const coverBase = 'http://homeassistant.local:8123';
@@ -12,8 +14,8 @@ async function checkEntities() {
   hasCover.value = false;
   for (let i = 0; i < entities.length; i++) {
     const entity = entities[i];
-    await homeassistant.getPlayerState(entity).then(state => {
-      if (state.attributes.entity_picture) {
+    await homeassistant.getEntityState(entity).then(state => {
+      if (state.state == 'playing' && state.attributes.entity_picture) {
         const coverUrlNew = coverBase + state.attributes.entity_picture
         hasCover.value = true;
         if (coverUrl.value === coverUrlNew) return;
@@ -36,7 +38,7 @@ setInterval(() => {
 
 <template>
   <img class="cover"
-       v-if="coverUrl"
+       :class="{ hidden: !show || !coverUrl }"
        :src="coverUrl" />
 </template>
 
@@ -48,5 +50,10 @@ setInterval(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform .5s;
+
+  &.hidden {
+    transform: translateX(-100%);
+  }
 }
 </style>
