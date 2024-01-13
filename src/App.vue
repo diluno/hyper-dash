@@ -2,15 +2,17 @@
 import { onMounted, ref } from "vue";
 import Cover from "./components/Cover.vue";
 import Time from "./components/Time.vue";
+import Netatmo from "./components/Netatmo.vue";
+import Sonos from "./components/Sonos.vue";
 
-const main = ref(null);
 const showCover = ref(true);
-let clickTimeout = null;
+const clickTimeout = ref(null);
 
 onMounted(() => {
-  main.value.addEventListener("click", () => {
+  document.addEventListener("click", () => {
     showCover.value = false;
-    clickTimeout = setTimeout(() => {
+    clearTimeout(clickTimeout.value);
+    clickTimeout.value = setTimeout(() => {
       showCover.value = true;
     }, 2000);
   });
@@ -19,10 +21,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <main ref="main">
+  <main>
     <Cover :show="showCover" />
     <div class="bubbles">
       <Time />
+      <h2>Netatmo</h2>
+      <Netatmo />
+      <h2>Sonos</h2>
+      <Sonos />
     </div>
   </main>
 </template>

@@ -50,6 +50,8 @@ setInterval(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  position: relative;
+  z-index: 10;
   transition: transform .5s;
 
   &.hidden {

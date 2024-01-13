@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope&family=Quicksand:wght@600&display=swap');
 
 html {
-  font-size: 24px;
+  font-size: 26px;
 }
 body {
   margin: 0;
@@ -26,6 +26,36 @@ body {
 .bubble {
   display: block;
   background-color: var(--bubble-color);
-  padding: 0.5em 1.5em;
+  padding: 0.5em 1.25em;
   border-radius: 1em;
+  position: relative;
+  font-size: 1rem;
+}
+.bubble--large {
+  font-size: 1.5rem;
+  padding: .25em 1em .25em 1.25em;
+  margin-left: .5rem;
+}
+.bubble--large:first-child {
+  margin-left: 0;
+}
+.bubble i {
+  display: block;
+  position: absolute;
+  top: -.25rem;
+  left: -.5rem;
+  font-style: normal;
+  font-size: .75em;
+}
+
+sup {
+  font-size: 0.5rem;
+}
+
+h2 {
+  font-size: 0.6rem;
+  font-weight: 400;
+  padding-left: 1rem;
+  margin: 0;
+  margin-bottom: -0.75rem;
 }
