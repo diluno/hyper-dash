@@ -30,7 +30,7 @@ checkEntities();
 
 setInterval(() => {
   checkEntities();
-}, 2000);
+}, 5000);
 
 </script>
 
