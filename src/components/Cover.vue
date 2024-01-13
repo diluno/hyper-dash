@@ -14,8 +14,10 @@ async function checkEntities() {
     const entity = entities[i];
     await homeassistant.getPlayerState(entity).then(state => {
       if (state.attributes.entity_picture) {
-        coverUrl.value = coverBase + state.attributes.entity_picture;
+        const coverUrlNew = coverBase + state.attributes.entity_picture
         hasCover.value = true;
+        if (coverUrl.value === coverUrlNew) return;
+        coverUrl.value = coverUrlNew;
       }
     });
     if (hasCover.value) break;
@@ -28,13 +30,13 @@ checkEntities();
 
 setInterval(() => {
   checkEntities();
-}, 5000);
+}, 2000);
 
 </script>
 
 <template>
   <img class="cover"
-       v-if="hasCover"
+       v-if="coverUrl"
        :src="coverUrl" />
 </template>
 
