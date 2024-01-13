@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope&family=Quicksand:wght@600&display=swap');
 
 html {
-  font-size: 26px;
+  font-size: 28px;
 }
 body {
   margin: 0;
@@ -35,6 +35,7 @@ body {
   font-size: 1.5rem;
   padding: .25em 1em .25em 1.25em;
   margin-left: .5rem;
+  border-radius: .8em;
 }
 .bubble--large:first-child {
   margin-left: 0;
