@@ -22,7 +22,7 @@ onMounted(() => {
 
 <template>
   <main>
-    <!-- <Cover :show="showCover" /> -->
+    <Cover :show="showCover" />
     <div class="bubbles">
       <Time />
       <h2>Netatmo</h2>
