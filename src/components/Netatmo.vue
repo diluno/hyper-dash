@@ -20,9 +20,9 @@ function checkEntities() {
 }
 
 const co2Color = computed(() => {
-  if(co2.value < 800) return '#00E400';
-  if(co2.value < 1000) return '#FFFF00';
-  if(co2.value < 1400) return '#FF7E00';
+  if (co2.value < 800) return '#00E400';
+  if (co2.value < 1000) return '#FFFF00';
+  if (co2.value < 1400) return '#FF7E00';
   return '#FF0000';
 });
 
@@ -51,9 +51,13 @@ checkEntities();
 
 <style lang="scss">
 .co2 {
-  background: v-bind(co2Color);
-  width: 1rem;
-  height: 1rem;
+  color: v-bind(co2Color);
+  background: currentColor;
+  width: .9rem;
+  height: .9rem;
   border-radius: 99%;
+  border: 1px solid rgba(#000, .3);
+  transform: translate(.1rem, .1rem);
+  filter: drop-shadow(0 0 5px currentColor);
 }
 </style>

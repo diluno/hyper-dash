@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref } from "vue";
+import DarkMode from './helpers/darkmode.js';
 import Cover from "./components/Cover.vue";
 import Time from "./components/Time.vue";
 import Netatmo from "./components/Netatmo.vue";
@@ -14,9 +15,15 @@ onMounted(() => {
     clearTimeout(clickTimeout.value);
     clickTimeout.value = setTimeout(() => {
       showCover.value = true;
-    }, 2000);
+    }, 5000);
   });
 });
+
+const darkMode = new DarkMode();
+darkMode.check();
+setInterval(() => {
+  darkMode.check();
+}, 60000);
 
 </script>
 

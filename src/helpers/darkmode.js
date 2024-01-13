@@ -1,0 +1,27 @@
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import isBetween from 'dayjs/plugin/isBetween';
+dayjs.extend(customParseFormat);
+dayjs.extend(isBetween);
+
+class DarkMode {
+  constructor() {
+    this.apiUrl =
+      'https://api.sunrisesunset.io/json?lat=47.362000&lng=8.517480';
+  }
+  async check() {
+    const response = await fetch(this.apiUrl);
+    const data = await response.json();
+    const lastLight = dayjs(data.results.last_light, 'h:m:s A');
+    const sunrise = dayjs(data.results.sunrise, 'h:m:s A');
+    const now = dayjs();
+    const isDay = now.isBetween(sunrise, lastLight);
+    if (isDay) {
+      document.body.classList.remove('dark');
+    } else {
+      document.body.classList.add('dark');
+    }
+    return data;
+  }
+}
+export default DarkMode;
