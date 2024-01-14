@@ -37,24 +37,52 @@ setInterval(() => {
 </script>
 
 <template>
-  <img class="cover"
-       :class="{ hidden: !show || !coverUrl }"
-       :src="coverUrl" />
+  <div class="cover"
+       :class="{ hidden: !show }"
+       v-if="coverUrl">
+    <img class="cover__img"
+         :src="coverUrl" />
+    <img class="cover__img"
+         :src="coverUrl" />
+  </div>
 </template>
 
 <style lang="scss">
 .cover {
+  --ease: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   z-index: 10;
-  transition: transform .5s;
+  transform-origin: 100% 0;
+  transition: transform .5s var(--ease), border-radius .5s var(--ease), top .5s var(--ease), right .5s var(--ease);
 
   &.hidden {
-    transform: translateX(-100%);
+    top: .5rem;
+    right: .5rem;
+    transform: scale(.15);
+    
+    .cover__img {
+      border-radius: 2rem;
+
+      &:nth-child(1) {
+        filter: blur(3rem);
+        opacity: .8;
+      }
+    }
+  }
+
+  &__img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter .5s var(--ease), border-radius .5s var(--ease);
   }
 }
 </style>

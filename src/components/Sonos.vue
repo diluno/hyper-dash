@@ -14,7 +14,6 @@ async function checkEntities() {
     const entity = entities[i];
     await homeassistant.getEntityState(entity).then(state => {
       if (state.state == 'playing') {
-        console.log(state.attributes);
         isPlaying.value = true;
         artist.value = state.attributes.media_artist;
         title.value = state.attributes.media_title;
@@ -45,5 +44,4 @@ setInterval(() => {
   </div>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
