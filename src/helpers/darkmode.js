@@ -12,8 +12,8 @@ class DarkMode {
   async check() {
     const response = await fetch(this.apiUrl);
     const data = await response.json();
-    const lastLight = dayjs(data.results.last_light, 'h:m:s A');
-    const sunrise = dayjs(data.results.sunrise, 'h:m:s A');
+    const lastLight = dayjs(data.results.dusk, 'h:m:s A');
+    const sunrise = dayjs(data.results.dawn, 'h:m:s A');
     const now = dayjs();
     const isDay = now.isBetween(sunrise, lastLight);
     if (isDay) {
