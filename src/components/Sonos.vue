@@ -22,7 +22,7 @@ async function checkEntities() {
     if (isPlaying.value) break;
   }
   if (!isPlaying.value) {
-    artist.value = '~ silence is golden ~';
+    artist.value = '';
     title.value = '';
   }
 }

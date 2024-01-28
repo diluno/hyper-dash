@@ -27,10 +27,10 @@ const co2Color = computed(() => {
 });
 
 const tempEmoji = computed(() => {
-  if (temp.value < 18) return '🥶';
-  if (temp.value < 22) return '😊';
-  if (temp.value < 26) return '🥵';
-  return '🥵🥵🥵';
+  if (temp.value < 18) return '❄️';
+  if (temp.value < 22) return '🌡️';
+  if (temp.value < 25) return '🔥';
+  return '🔥🔥🔥';
 });
 
 setInterval(() => {
