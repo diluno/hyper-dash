@@ -2,8 +2,9 @@
 import { watch, ref } from "vue";
 import { entities } from "../store";
 
-const props = defineProps(['show']);
+// const props = defineProps(['show']);
 
+const show = ref(true);
 const coverUrl = ref('');
 const hasCover = ref(false);
 const coverBase = 'http://homeassistant.local:8123';
@@ -14,7 +15,7 @@ watch(entities, (newEntities) => {
 });
 
 async function checkEntities() {
-  if(!entities.value) return;
+  if (!entities.value) return;
   hasCover.value = false;
   mediaEntities.forEach(slug => {
     const entity = entities.value[slug];
@@ -37,6 +38,7 @@ checkEntities();
 
 <template>
   <div class="cover"
+       @click="show = !show"
        :class="{ hidden: !show }"
        v-if="coverUrl">
     <img class="cover__img"

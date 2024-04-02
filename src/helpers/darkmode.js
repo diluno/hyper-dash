@@ -8,6 +8,12 @@ class DarkMode {
   constructor() {
     this.apiUrl =
       'https://api.sunrisesunset.io/json?lat=47.362000&lng=8.517480';
+
+    this.check();
+
+    setInterval(() => {
+      this.check();
+    }, 60000);
   }
   async check() {
     const response = await fetch(this.apiUrl);
@@ -17,9 +23,9 @@ class DarkMode {
     const now = dayjs();
     const isDay = now.isBetween(sunrise, lastLight);
     if (isDay) {
-    } else {
       document.body.classList.remove('dark');
-      // document.body.classList.add('dark');
+    } else {
+      document.body.classList.add('dark');
     }
     return data;
   }
