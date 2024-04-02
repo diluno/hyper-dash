@@ -1,38 +1,30 @@
 <script setup>
-import { watch, ref } from "vue";
+import { watch, ref, computed } from "vue";
 import { entities } from "../store";
 
-// const props = defineProps(['show']);
-
 const show = ref(true);
-const coverUrl = ref('');
-const hasCover = ref(false);
 const coverBase = 'http://homeassistant.local:8123';
 const mediaEntities = ['media_player.living_room', 'media_player.bathroom', 'media_player.bedroom', 'media_player.kitchen']
 
-watch(entities, (newEntities) => {
-  checkEntities();
-});
-
-async function checkEntities() {
+const coverUrl = computed(() => {
   if (!entities.value) return;
-  hasCover.value = false;
+  let url = null;
   mediaEntities.forEach(slug => {
     const entity = entities.value[slug];
     if (!entity) return;
     if (entity.state == 'playing' && entity.attributes.entity_picture) {
-      const coverUrlNew = coverBase + entity.attributes.entity_picture
-      hasCover.value = true;
-      if (coverUrl.value === coverUrlNew) return;
-      coverUrl.value = coverUrlNew;
+      url = coverBase + entity.attributes.entity_picture;
     }
-    if (hasCover.value) return;
   });
-  if (!hasCover.value) {
-    coverUrl.value = '';
-  }
-}
-checkEntities();
+  return url;
+});
+
+watch(show, (newShow) => {
+  if (newShow) return;
+  setTimeout(() => {
+    show.value = true;
+  }, 10000);
+});
 
 </script>
 

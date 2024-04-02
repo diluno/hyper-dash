@@ -2,39 +2,27 @@
 import { entities } from "../store";
 import { computed, ref, watch } from 'vue';
 
-const temp = ref('');
-const co2 = ref('');
-const humidity = ref('');
-
-watch(entities, (newEntities) => {
-  checkEntities();
+const values = computed(() => {
+  return {
+    co2: entities.value ? entities.value['sensor.indoor_co2'].state : 0,
+    temp: entities.value ? entities.value['sensor.indoor_temperature'].state : 0,
+    humidity: entities.value ? entities.value['sensor.indoor_humidity'].state : 0
+  };
 });
 
-function checkEntities() {
-  if (!entities.value) return;
-  co2.value = entities.value['sensor.indoor_co2'].state;
-  temp.value = entities.value['sensor.indoor_temperature'].state;
-  humidity.value = entities.value['sensor.indoor_humidity'].state;
-}
-
 const co2Color = computed(() => {
-  if (co2.value < 800) return '#00E400';
-  if (co2.value < 1000) return '#FFFF00';
-  if (co2.value < 1400) return '#FF7E00';
+  if (values.value.co2 < 800) return '#00E400';
+  if (values.value.co2 < 1000) return '#FFFF00';
+  if (values.value.co2 < 1400) return '#FF7E00';
   return '#FF0000';
 });
 
 const tempEmoji = computed(() => {
-  if (temp.value < 18) return '❄️';
-  if (temp.value < 22) return '🌡️';
-  if (temp.value < 25) return '🔥';
+  if (values.value.temp < 18) return '❄️';
+  if (values.value.temp < 22) return '🌡️';
+  if (values.value.temp < 25) return '🔥';
   return '🔥🔥🔥';
 });
-
-setInterval(() => {
-  checkEntities();
-}, 30000);
-checkEntities();
 
 </script>
 
@@ -43,9 +31,9 @@ checkEntities();
     <h2>Netatmo</h2>
     <div class="container"
          style="--bubble-color: #BCEEF8;">
-      <div class="bubble bubble--large"><i class="co2"></i>{{ co2 }}<sup>ppm</sup></div>
-      <div class="bubble bubble--large"><i>{{ tempEmoji }}</i>{{ temp }}<sup>°C</sup></div>
-      <div class="bubble bubble--large"><i>💧</i>{{ humidity }}<sup>%</sup></div>
+      <div class="bubble bubble--large"><i class="co2"></i>{{ values.co2 }}<sup>ppm</sup></div>
+      <div class="bubble bubble--large"><i>{{ tempEmoji }}</i>{{ values.temp }}<sup>°C</sup></div>
+      <div class="bubble bubble--large"><i>💧</i>{{ values.humidity }}<sup>%</sup></div>
     </div>
   </div>
 </template>
