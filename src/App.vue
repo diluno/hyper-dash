@@ -1,13 +1,22 @@
 <script setup>
 import { onMounted, ref } from "vue";
+import { entities } from "./store.js";
+import HomeAssistant from "./helpers/homeassistant.js";
 import DarkMode from './helpers/darkmode.js';
 import Cover from "./components/Cover.vue";
 import Time from "./components/Time.vue";
 import Netatmo from "./components/Netatmo.vue";
 import Sonos from "./components/Sonos.vue";
 
+const homeassistant = new HomeAssistant();
+
 const showCover = ref(true);
 const clickTimeout = ref(null);
+// const entities = ref(null);
+
+homeassistant.connectSocket((ent) => {
+  entities.value = ent;
+});
 
 onMounted(() => {
   document.addEventListener("click", () => {
@@ -21,6 +30,7 @@ onMounted(() => {
 
 const darkMode = new DarkMode();
 darkMode.check();
+
 setInterval(() => {
   darkMode.check();
 }, 60000);
@@ -32,9 +42,7 @@ setInterval(() => {
     <Cover :show="showCover" />
     <div class="bubbles">
       <Time />
-      <h2>Netatmo</h2>
       <Netatmo />
-      <h2>Sonos</h2>
       <Sonos />
     </div>
   </main>

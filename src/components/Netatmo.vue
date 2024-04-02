@@ -1,22 +1,20 @@
 <script setup>
-import HomeAssistant from '../helpers/homeassistant.js';
-const homeassistant = new HomeAssistant();
-import { computed, ref } from 'vue';
+import { entities } from "../store";
+import { computed, ref, watch } from 'vue';
 
 const temp = ref('');
 const co2 = ref('');
 const humidity = ref('');
 
+watch(entities, (newEntities) => {
+  checkEntities();
+});
+
 function checkEntities() {
-  homeassistant.getEntityState('sensor.indoor_co2').then(state => {
-    co2.value = state.state;
-  });
-  homeassistant.getEntityState('sensor.indoor_temperature').then(state => {
-    temp.value = state.state;
-  });
-  homeassistant.getEntityState('sensor.indoor_humidity').then(state => {
-    humidity.value = state.state;
-  });
+  if (!entities.value) return;
+  co2.value = entities.value['sensor.indoor_co2'].state;
+  temp.value = entities.value['sensor.indoor_temperature'].state;
+  humidity.value = entities.value['sensor.indoor_humidity'].state;
 }
 
 const co2Color = computed(() => {
@@ -41,11 +39,14 @@ checkEntities();
 </script>
 
 <template>
-  <div class="container"
-       style="--bubble-color: #BCEEF8;">
-    <div class="bubble bubble--large"><i class="co2"></i>{{ co2 }}<sup>ppm</sup></div>
-    <div class="bubble bubble--large"><i>{{ tempEmoji }}</i>{{ temp }}<sup>°C</sup></div>
-    <div class="bubble bubble--large"><i>💧</i>{{ humidity }}<sup>%</sup></div>
+  <div>
+    <h2>Netatmo</h2>
+    <div class="container"
+         style="--bubble-color: #BCEEF8;">
+      <div class="bubble bubble--large"><i class="co2"></i>{{ co2 }}<sup>ppm</sup></div>
+      <div class="bubble bubble--large"><i>{{ tempEmoji }}</i>{{ temp }}<sup>°C</sup></div>
+      <div class="bubble bubble--large"><i>💧</i>{{ humidity }}<sup>%</sup></div>
+    </div>
   </div>
 </template>
 
@@ -53,8 +54,8 @@ checkEntities();
 .co2 {
   color: v-bind(co2Color);
   background: currentColor;
-  width: .9rem;
-  height: .9rem;
+  width: 1rem;
+  height: 1rem;
   border-radius: 99%;
   border: 1px solid rgba(#000, .3);
   transform: translate(.1rem, .1rem);

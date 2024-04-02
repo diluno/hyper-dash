@@ -1,38 +1,37 @@
 <script setup>
-import HomeAssistant from '../helpers/homeassistant.js';
-import { ref } from 'vue';
-const homeassistant = new HomeAssistant();
+import { watch, ref } from "vue";
+import { entities } from "../store";
 
 const props = defineProps(['show']);
 
 const coverUrl = ref('');
 const hasCover = ref(false);
 const coverBase = 'http://homeassistant.local:8123';
-const entities = ['media_player.living_room', 'media_player.bathroom', 'media_player.bedroom', 'media_player.kitchen']
+const mediaEntities = ['media_player.living_room', 'media_player.bathroom', 'media_player.bedroom', 'media_player.kitchen']
+
+watch(entities, (newEntities) => {
+  checkEntities();
+});
 
 async function checkEntities() {
+  if(!entities.value) return;
   hasCover.value = false;
-  for (let i = 0; i < entities.length; i++) {
-    const entity = entities[i];
-    await homeassistant.getEntityState(entity).then(state => {
-      if (state.state == 'playing' && state.attributes.entity_picture) {
-        const coverUrlNew = coverBase + state.attributes.entity_picture
-        hasCover.value = true;
-        if (coverUrl.value === coverUrlNew) return;
-        coverUrl.value = coverUrlNew;
-      }
-    });
-    if (hasCover.value) break;
-  }
+  mediaEntities.forEach(slug => {
+    const entity = entities.value[slug];
+    if (!entity) return;
+    if (entity.state == 'playing' && entity.attributes.entity_picture) {
+      const coverUrlNew = coverBase + entity.attributes.entity_picture
+      hasCover.value = true;
+      if (coverUrl.value === coverUrlNew) return;
+      coverUrl.value = coverUrlNew;
+    }
+    if (hasCover.value) return;
+  });
   if (!hasCover.value) {
     coverUrl.value = '';
   }
 }
 checkEntities();
-
-setInterval(() => {
-  checkEntities();
-}, 5000);
 
 </script>
 
@@ -64,7 +63,7 @@ setInterval(() => {
     top: .5rem;
     right: .5rem;
     transform: scale(.15);
-    
+
     .cover__img {
       border-radius: 2rem;
 

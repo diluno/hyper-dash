@@ -22,9 +22,9 @@ check();
 <template>
   <div class="container"
        style="--bubble-color: #FFCA34;">
-    <div class="bubble">{{ time }}</div>
-    <div class="bubble">{{ date }}</div>
-    <div class="bubble">{{ day }}</div>
+    <div class="bubble bubble--large">{{ time }}</div>
+    <div class="bubble bubble--large">{{ date }}</div>
+    <!-- <div class="bubble bubble--large">{{ day }}</div> -->
   </div>
 </template>
 
