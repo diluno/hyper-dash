@@ -1,53 +1,36 @@
 <script setup>
 import { entities } from "../store";
-import { ref, watch } from 'vue';
+import { computed } from 'vue';
 
 const mediaEntities = ['media_player.living_room', 'media_player.bathroom', 'media_player.bedroom', 'media_player.kitchen']
-const artist = ref('');
-const title = ref('');
-const isPlaying = ref(false);
 
-watch(entities, (newEntities) => {
-  checkEntities();
-});
-
-function checkEntities() {
-  if (!entities.value) return;
-  isPlaying.value = false;
-  mediaEntities.forEach(slug => {
+const track = computed(() => {
+  const t = {artist:'', title:'', playing: false};
+  if (!entities.value) return t;
+  mediaEntities.every(slug => {
     const entity = entities.value[slug];
     if (!entity) return;
     if (entity.state == 'playing') {
-      isPlaying.value = true;
-      artist.value = entity.attributes.media_artist;
-      title.value = entity.attributes.media_title;
+      t.playing = true;
+      t.artist = entity.attributes.media_artist;
+      t.title = entity.attributes.media_title;
+      return false;
     }
   });
-  if (isPlaying.value) return;
-}
-
-if (!isPlaying.value) {
-  artist.value = '';
-  title.value = '';
-}
-
-checkEntities();
-
-setInterval(() => {
-  checkEntities();
-}, 2000);
+  return t;
+});
 
 </script>
 
 <template>
-  <div v-if="isPlaying">
+  <div v-if="track.playing">
     <h2>Sonos</h2>
     <div class="container"
          style="--bubble-color: #FBCDFF;">
       <div class="bubble"
-           v-if="title">{{ title }}</div>
+           v-if="track.title">{{ track.title }}</div>
       <div class="bubble"
-           v-if="artist">{{ artist }}</div>
+           v-if="track.artist">{{ track.artist }}</div>
     </div>
   </div>
 </template>

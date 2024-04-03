@@ -29,7 +29,7 @@ new DarkMode();
       <Netatmo />
       <Transport />
       <Plex />
-      <Sonos />
+      <!-- <Sonos /> -->
     </div>
   </main>
 </template>

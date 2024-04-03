@@ -19,7 +19,7 @@ const nextOnDeparture = computed(() => {
     <h2>Binz -> ZH HB</h2>
     <div class="container"
          style="--bubble-color: #FBC2C2;">
-      <div class="bubble bubble--large"><i>🚃</i>{{ nextDeparture }}</div>
+      <div class="bubble bubble--large"><i>🚂</i>{{ nextDeparture }}</div>
       <!-- <div class="bubble bubble--large"><i>🚃</i>{{ nextOnDeparture }}</div> -->
     </div>
   </div>

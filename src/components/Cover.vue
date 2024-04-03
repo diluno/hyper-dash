@@ -19,6 +19,22 @@ const coverUrl = computed(() => {
   return url;
 });
 
+const track = computed(() => {
+  const t = { artist: '', title: '', playing: false };
+  if (!entities.value) return t;
+  mediaEntities.every(slug => {
+    const entity = entities.value[slug];
+    if (!entity) return;
+    if (entity.state == 'playing') {
+      t.playing = true;
+      t.artist = entity.attributes.media_artist;
+      t.title = entity.attributes.media_title;
+      return false;
+    }
+  });
+  return t;
+});
+
 watch(show, (newShow) => {
   if (newShow) return;
   setTimeout(() => {
@@ -33,6 +49,11 @@ watch(show, (newShow) => {
        @click="show = !show"
        :class="{ hidden: !show }"
        v-if="coverUrl">
+    <div class="cover__track">
+      <span v-if="track.artist"
+            class="cover__track__artist">{{ track.artist }}</span>
+      <span class="cover__track__title">{{ track.title }}</span>
+    </div>
     <img class="cover__img"
          :src="coverUrl" />
     <img class="cover__img"
@@ -51,17 +72,50 @@ watch(show, (newShow) => {
   height: 100%;
   z-index: 10;
   transform-origin: 100% 0;
+  background: #000;
   transition: transform .5s var(--ease), border-radius .5s var(--ease), top .5s var(--ease), right .5s var(--ease);
+
+  &__track {
+    position: absolute;
+    bottom: .5rem;
+    left: .5rem;
+    z-index: 2;
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+    align-items: flex-start;
+
+    &__artist,
+    &__title {
+      display: block;
+      font-size: 1rem;
+      color: rgba(#000, .8);
+      font-weight: 600;
+      background-color: rgba(#fff9e9, .5);
+      backdrop-filter: blur(5px);
+      padding: .25em .6rem;
+      border-radius: .75em;
+    }
+
+    &__artist {
+      font-size: .7rem;
+      // border-radius: 
+    }
+  }
 
   &.hidden {
     top: .5rem;
     right: .5rem;
     transform: scale(.15);
 
+    .cover__track {
+      display: none;
+    }
+
     .cover__img {
       border-radius: 2rem;
 
-      &:nth-child(1) {
+      &:nth-child(2) {
         filter: blur(3rem);
         opacity: .8;
       }
