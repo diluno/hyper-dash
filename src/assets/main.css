@@ -28,7 +28,7 @@ body.dark {
   flex-wrap: wrap;
   gap: 0.25rem;
   /* row-gap: 8px; */
-  padding: 1rem;
+  padding: .75rem 1rem;
 }
 .bubble {
   display: block;
