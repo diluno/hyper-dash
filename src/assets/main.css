@@ -33,7 +33,7 @@ body.dark {
 .bubble {
   display: block;
   background-color: var(--bubble-color);
-  padding: 0.5em 0.75em;
+  padding: 0.4em 1em;
   border-radius: 1em;
   position: relative;
   font-size: 1rem;
@@ -45,9 +45,9 @@ body.dark {
 }
 .bubble--large {
   font-size: 1.5rem;
-  padding: 0.25em .75em 0.25em 1em;
+  padding: 0.15em 0.75em 0.15em 0.75em;
   /* margin-left: 0.5rem; */
-  border-radius: 0.8em;
+  border-radius: 0.6em;
 }
 .bubble--large:first-child {
   margin-left: 0;

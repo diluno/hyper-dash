@@ -6,7 +6,7 @@ import DarkMode from './helpers/darkmode.js';
 import Cover from "./components/Cover.vue";
 import Time from "./components/Time.vue";
 import Netatmo from "./components/Netatmo.vue";
-import Transport from "./components/Transport.vue";
+import Plex from "./components/Plex.vue";
 import Sonos from "./components/Sonos.vue";
 
 const homeassistant = new HomeAssistant();
@@ -26,7 +26,7 @@ new DarkMode();
     <div class="bubbles">
       <Time />
       <Netatmo />
-      <Transport />
+      <Plex />
       <Sonos />
     </div>
   </main>

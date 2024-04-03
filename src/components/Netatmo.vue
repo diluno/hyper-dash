@@ -18,10 +18,10 @@ const co2Color = computed(() => {
 });
 
 const tempEmoji = computed(() => {
-  if (values.value.temp < 18) return '❄️';
-  if (values.value.temp < 22) return '🌡️';
+  if (values.value.temp < 19) return '❄️';
+  if (values.value.temp < 22.5) return '🌡️';
   if (values.value.temp < 25) return '🔥';
-  return '🔥🔥🔥';
+  return '🥵';
 });
 
 </script>
