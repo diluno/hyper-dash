@@ -46,7 +46,9 @@ body.dark {
 .dark .bubble {
   background-color: transparent;
   color: var(--bubble-color);
-  border: 1px solid var(--bubble-color);
+  /* border: 2px solid var(--bubble-color); */
+  border: 1px solid #fff;
+  box-shadow: 0 0 15px var(--bubble-color) inset, 0 0 15px var(--bubble-color);
 }
 .bubble--large {
   font-size: 1.5rem;

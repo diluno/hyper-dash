@@ -19,11 +19,18 @@ homeassistant.connectSocket((ent) => {
 
 new DarkMode();
 
+function reload() {
+  location.reload();
+}
+
 </script>
 
 <template>
   <main>
     <Cover />
+    <a href="#"
+       @click="reload"
+       class="reload-btn"></a>
     <div class="bubbles">
       <Time />
       <Netatmo />
@@ -34,4 +41,14 @@ new DarkMode();
   </main>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+.reload-btn {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 3rem;
+  height: 3rem;
+  display: block;
+  background: transparent;
+}
+</style>

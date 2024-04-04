@@ -30,10 +30,13 @@ const tempEmoji = computed(() => {
   <div>
     <h2>Netatmo</h2>
     <div class="container"
-         style="--bubble-color: #BCEEF8;">
+         style="--bubble-color: #BCEEF8;" v-if="values.co2 != 'unavailable'">
       <div class="bubble bubble--large"><i class="co2"></i>{{ values.co2 }}<sup>ppm</sup></div>
       <div class="bubble bubble--large"><i>{{ tempEmoji }}</i>{{ values.temp }}<sup>°C</sup></div>
       <div class="bubble bubble--large"><i>💧</i>{{ values.humidity }}<sup>%</sup></div>
+    </div>
+    <div class="container" v-else>
+      🙈
     </div>
   </div>
 </template>
