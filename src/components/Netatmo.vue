@@ -29,13 +29,16 @@ const tempEmoji = computed(() => {
 <template>
   <div>
     <h2>Netatmo</h2>
+    <div class="alarm" v-if="values.co2 > 1000"></div>
     <div class="container"
-         style="--bubble-color: #BCEEF8;" v-if="values.co2 != 'unavailable'">
+         style="--bubble-color: #BCEEF8;"
+         v-if="values.co2 != 'unavailable'">
       <div class="bubble bubble--large"><i class="co2"></i>{{ values.co2 }}<sup>ppm</sup></div>
       <div class="bubble bubble--large"><i>{{ tempEmoji }}</i>{{ values.temp }}<sup>°C</sup></div>
       <div class="bubble bubble--large"><i>💧</i>{{ values.humidity }}<sup>%</sup></div>
     </div>
-    <div class="container" v-else>
+    <div class="container"
+         v-else>
       🙈
     </div>
   </div>
@@ -51,5 +54,27 @@ const tempEmoji = computed(() => {
   border: 1px solid rgba(#000, .3);
   transform: translate(.1rem, .1rem);
   filter: drop-shadow(0 0 5px currentColor);
+}
+
+.alarm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(red, .2);
+  z-index: 10;
+  // box-shadow: 0 0 100px red inset;
+  animation: pulseshadow 2s infinite ease-in-out alternate;
+  pointer-events: none;
+}
+
+@keyframes pulseshadow {
+  0% {
+    box-shadow: 0 0 50px rgba(red, .2) inset;
+  }
+  100% {
+    box-shadow: 0 0 130px rgba(red, 1) inset;
+  }
 }
 </style>
