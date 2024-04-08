@@ -34,7 +34,6 @@ function reload() {
     <div class="bubbles">
       <Time />
       <Netatmo />
-      <Transport />
       <Plex />
       <!-- <Sonos /> -->
     </div>
