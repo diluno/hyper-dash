@@ -3,7 +3,7 @@ import ws from 'ws';
 import http from 'http';
 import fs from 'fs';
 import { exec } from 'child_process';
-import sharp from 'sharp';
+import Jimp from 'jimp';
 
 global.WebSocket = ws;
 const homeassistant = new HomeAssistant();
@@ -35,14 +35,15 @@ function checkCover(_entities) {
 
       file.on('finish', () => {
         file.close();
-        sharp(imageName)
-          .resize(32, 32, { fit: 'contain' })
-          .png()
-          .toFile('cover.png', () => {
-            exec(
-              '~/python3-idotmatrix-client/run_in_venv.sh --address D4:B6:AD:A9:EA:9B --image true --set-image ~/hyper-dash/idotmatrix/cover.jpg --process-image 32'
-            );
-          });
+        Jimp.read('cover.png', (err, lenna) => {
+          if (err) throw err;
+          lenna
+            .resize(32, 32) // resize
+            .write('cover.png'); // save
+          exec(
+            '~/python3-idotmatrix-client/run_in_venv.sh --address D4:B6:AD:A9:EA:9B --image true --set-image ~/hyper-dash/idotmatrix/cover.png'
+          );
+        });
       });
     })
     .on('error', (err) => {
