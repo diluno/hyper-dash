@@ -16,6 +16,7 @@ const mediaEntities = [
   'media_player.kitchen',
 ];
 const imageName = 'cover.jpg';
+let cover = '';
 
 function checkCover(_entities) {
   let url = null;
@@ -26,8 +27,9 @@ function checkCover(_entities) {
       url = coverBase + entity.attributes.entity_picture;
     }
   });
+  if (!url || url == cover) return;
   console.log(url);
-  if (!url) return;
+  cover = url;
   const file = fs.createWriteStream(imageName);
   http
     .get(url, (response) => {
