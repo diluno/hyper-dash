@@ -35,7 +35,7 @@ function checkCover(_entities) {
 
       file.on('finish', () => {
         file.close();
-        Jimp.read('cover.png', (err, lenna) => {
+        Jimp.read('cover.jpg', (err, lenna) => {
           if (err) throw err;
           lenna
             .resize(32, 32) // resize
