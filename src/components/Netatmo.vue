@@ -62,10 +62,12 @@ const tempEmoji = computed(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(red, .2);
+  // background: rgba(red, .2);
+  border: 5px dashed red;
+  box-sizing: border-box;
   z-index: 10;
   // box-shadow: 0 0 100px red inset;
-  animation: pulseshadow 2s infinite ease-in-out alternate;
+  // animation: pulseshadow 2s infinite ease-in-out alternate;
   pointer-events: none;
 }
 

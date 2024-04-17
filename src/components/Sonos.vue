@@ -2,10 +2,11 @@
 import { entities } from "../store";
 import { computed } from 'vue';
 
+const emit = defineEmits(['sendMessage'])
 const mediaEntities = ['media_player.living_room', 'media_player.bathroom', 'media_player.bedroom', 'media_player.kitchen']
 
 const track = computed(() => {
-  const t = {artist:'', title:'', playing: false};
+  const t = { artist: '', title: '', playing: false };
   if (!entities.value) return t;
   mediaEntities.every(slug => {
     const entity = entities.value[slug];
@@ -20,6 +21,17 @@ const track = computed(() => {
   return t;
 });
 
+function nextTrack() {
+  emit('sendMessage', {
+    type: 'call_service',
+    domain: 'media_player',
+    service: 'media_next_track',
+    service_data: {
+      entity_id: 'media_player.living_room'
+    }
+  });
+}
+
 </script>
 
 <template>
@@ -27,6 +39,8 @@ const track = computed(() => {
     <h2>Sonos</h2>
     <div class="container"
          style="--bubble-color: #FBCDFF;">
+      <div class="bubble"
+           @click="nextTrack">-></div>
       <div class="bubble"
            v-if="track.title">{{ track.title }}</div>
       <div class="bubble"

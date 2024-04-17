@@ -12,7 +12,7 @@ class HomeAssistant {
     this.token =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2ZDM5NGE5N2VhYTM0ZmJiYWY0MDFiYTMzZjRhZjFiYyIsImlhdCI6MTcwNTA5NDM2MywiZXhwIjoyMDIwNDU0MzYzfQ.91RstDHi9OG1U0_OFWudSjaNGzTo5RWX2laKbhIFZMU';
   }
-  async connectSocket(_callback) {
+  async connectSocket() {
     let auth;
     try {
       auth = await createLongLivedTokenAuth(this.hassioUrl, this.token);
@@ -25,7 +25,8 @@ class HomeAssistant {
       }
     }
     const connection = await createConnection({ auth });
-    subscribeEntities(connection, _callback);
+    // subscribeEntities(connection, _callback);
+    return connection;
   }
 }
 export default HomeAssistant;
