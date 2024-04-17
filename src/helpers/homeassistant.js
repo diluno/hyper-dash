@@ -2,7 +2,6 @@ import {
   getAuth,
   createLongLivedTokenAuth,
   createConnection,
-  subscribeEntities,
   ERR_HASS_HOST_REQUIRED,
 } from 'home-assistant-js-websocket';
 

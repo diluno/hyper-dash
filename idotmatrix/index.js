@@ -4,6 +4,7 @@ import http from 'http';
 import fs from 'fs';
 import { exec } from 'child_process';
 import Jimp from 'jimp';
+import { subscribeEntities } from 'home-assistant-js-websocket';
 
 global.WebSocket = ws;
 const homeassistant = new HomeAssistant();
@@ -54,6 +55,7 @@ function checkCover(_entities) {
     });
 }
 
-homeassistant.connectSocket((ent) => {
+const conn = await homeassistant.connectSocket();
+subscribeEntities(conn, (ent) => {
   checkCover(ent);
 });
