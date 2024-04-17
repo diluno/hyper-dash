@@ -19,6 +19,12 @@ const mediaEntities = [
 const imageName = 'cover.jpg';
 let cover = '';
 
+function turnOff() {
+  exec(
+    '~/python3-idotmatrix-client/run_in_venv.sh --address D4:B6:AD:A9:EA:9B --screen off'
+  );
+}
+
 function checkCover(_entities) {
   let url = null;
   mediaEntities.forEach((slug) => {
@@ -28,7 +34,8 @@ function checkCover(_entities) {
       url = coverBase + entity.attributes.entity_picture;
     }
   });
-  if (!url || url == cover) return;
+  if (!url) turnOff();
+  if (url == cover) return;
   console.log(url);
   cover = url;
   const file = fs.createWriteStream(imageName);
