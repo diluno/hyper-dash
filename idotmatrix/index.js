@@ -34,7 +34,10 @@ function checkCover(_entities) {
       url = coverBase + entity.attributes.entity_picture;
     }
   });
-  if (!url) turnOff();
+  if (!url) {
+    turnOff();
+    return;
+  }
   if (url == cover) return;
   console.log(url);
   cover = url;
