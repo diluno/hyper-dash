@@ -19,8 +19,14 @@ const mediaEntities = [
 const imageName = 'cover.jpg';
 let cover = '';
 
+var child = null;
+
 function turnOff() {
-  exec(
+  if (child) {
+    child.kill();
+    child = null;
+  }
+  child = exec(
     '~/python3-idotmatrix-client/run_in_venv.sh --address D4:B6:AD:A9:EA:9B --screen off'
   );
 }
@@ -53,7 +59,11 @@ function checkCover(_entities) {
           lenna
             .resize(32, 32) // resize
             .write('cover.png'); // save
-          exec(
+          if (child) {
+            child.kill();
+            child = null;
+          }
+          child = exec(
             '~/python3-idotmatrix-client/run_in_venv.sh --address D4:B6:AD:A9:EA:9B --image true --set-image ~/hyper-dash/idotmatrix/cover.png'
           );
         });
