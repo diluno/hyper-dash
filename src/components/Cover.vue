@@ -6,38 +6,46 @@ const show = ref(true);
 const coverBase = 'http://homeassistant.local:8123';
 const mediaEntities = ['media_player.living_room', 'media_player.bathroom', 'media_player.bedroom', 'media_player.kitchen']
 
+let timeout = null;
+
 const coverUrl = computed(() => {
   if (!entities.value) return;
   let url = null;
-  mediaEntities.forEach(slug => {
+  for (let i = 0; i < mediaEntities.length; i++) {
+    const slug = mediaEntities[i];
     const entity = entities.value[slug];
     if (!entity) return;
     if (entity.state == 'playing' && entity.attributes.entity_picture) {
       url = coverBase + entity.attributes.entity_picture;
+      break;
     }
-  });
+  }
   return url;
 });
 
 const track = computed(() => {
   const t = { artist: '', title: '', playing: false };
   if (!entities.value) return t;
-  mediaEntities.every(slug => {
+  for (let i = 0; i < mediaEntities.length; i++) {
+    const slug = mediaEntities[i];
     const entity = entities.value[slug];
     if (!entity) return;
     if (entity.state == 'playing') {
       t.playing = true;
       t.artist = entity.attributes.media_artist;
       t.title = entity.attributes.media_title;
-      return false;
+      break;
     }
-  });
+  }
   return t;
 });
 
 watch(show, (newShow) => {
-  if (newShow) return;
-  setTimeout(() => {
+  if (newShow) {
+    clearTimeout(timeout);
+    return;
+  }
+  timeout = setTimeout(() => {
     show.value = true;
   }, 10000);
 });
@@ -72,7 +80,6 @@ watch(show, (newShow) => {
   height: 100%;
   z-index: 10;
   transform-origin: 100% 0;
-  background: #000;
   transition: transform .5s var(--ease), border-radius .5s var(--ease), top .5s var(--ease), right .5s var(--ease);
 
   &__track {
@@ -116,7 +123,7 @@ watch(show, (newShow) => {
       border-radius: 2rem;
 
       &:nth-child(2) {
-        filter: blur(3rem);
+        filter: blur(2rem);
         opacity: .8;
       }
     }

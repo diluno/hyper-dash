@@ -29,7 +29,7 @@ const tempEmoji = computed(() => {
 <template>
   <div>
     <h2>Netatmo</h2>
-    <div class="alarm" v-if="values.co2 > 1000"></div>
+    <div class="alarm" v-if="values.co2 > 1100"></div>
     <div class="container"
          style="--bubble-color: #BCEEF8;"
          v-if="values.co2 != 'unavailable'">
@@ -62,12 +62,11 @@ const tempEmoji = computed(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  // background: rgba(red, .2);
-  border: 5px dashed red;
+  background: rgba(red, .2);
   box-sizing: border-box;
   z-index: 10;
-  // box-shadow: 0 0 100px red inset;
-  // animation: pulseshadow 2s infinite ease-in-out alternate;
+  box-shadow: 0 0 100px red inset;
+  animation: pulseshadow 2s infinite ease-in-out alternate;
   pointer-events: none;
 }
 
