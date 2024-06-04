@@ -37,15 +37,15 @@ function nextTrack() {
 
 <template>
   <div v-if="track.playing">
-    <h2>Sonos</h2>
+    <!-- <h2>Sonos</h2> -->
     <div class="container"
          style="--bubble-color: #FBCDFF;">
-      <div class="bubble bubble--interactive"
-           @click="nextTrack">⇥</div>
       <div class="bubble"
            v-if="track.title">{{ track.title }}</div>
       <div class="bubble"
            v-if="track.artist">{{ track.artist }}</div>
+      <div class="bubble bubble--interactive"
+           @click="nextTrack">⇥</div>
     </div>
   </div>
 </template>

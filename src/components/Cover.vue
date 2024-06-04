@@ -88,25 +88,23 @@ watch(show, (newShow) => {
     left: .5rem;
     z-index: 2;
     display: flex;
-    gap: 4px;
+    gap: 2px;
     flex-direction: column;
     align-items: flex-start;
 
     &__artist,
     &__title {
       display: block;
-      font-size: 1rem;
+      font-size: .75rem;
       color: rgba(#000, .8);
-      font-weight: 600;
-      background-color: rgba(#fff9e9, .5);
+      background-color: rgba(#fff, .6);
       backdrop-filter: blur(5px);
-      padding: .25em .6rem;
-      border-radius: .75em;
+      padding: .15em .3rem;
+      font-weight: 600;
     }
 
     &__artist {
-      font-size: .7rem;
-      // border-radius: 
+      font-weight: 400;
     }
   }
 

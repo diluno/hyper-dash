@@ -1,14 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Belleza&family=Sora:wght@100..800&display=swap');
 
+:root {
+  --c-alarm: #F84A48;
+}
 html {
   font-size: 30px;
   margin: 0;
 }
 body {
   margin: 0;
-  font-family: 'Manrope', Helvetica, sans-serif;
+  font-family: 'Sora', Helvetica, sans-serif;
   font-optical-sizing: auto;
-  background: #fff9e9;
+  background: #fff;
   color: #000;
   margin: 0;
   cursor: none;
@@ -23,57 +26,62 @@ body.dark {
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
+  padding: 40px;
 }
 
 .container {
   --bubble-color: #aff;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem;
-  /* row-gap: 8px; */
-  padding: 0.75rem 1rem;
+  gap: 6px;
+  padding: 8px;
 }
 .bubble {
   display: block;
   background-color: var(--bubble-color);
-  padding: 0.4em 1em;
-  border-radius: 1em;
+  padding: 0.2em 0.5em;
   position: relative;
   font-size: 1rem;
+  border: 1px solid #000;
 }
 .bubble:has(i) {
-  padding-left: 1em;
+  padding-left: 1.5em;
 }
 .dark .bubble {
   background-color: transparent;
   color: var(--bubble-color);
-  border: 2px solid var(--bubble-color);
-  // border: 1px solid #fff;
-  // box-shadow: 0 0 15px var(--bubble-color) inset, 0 0 15px var(--bubble-color);
+  border: 1px solid var(--bubble-color);
+  font-weight: 300;
 }
 .bubble--large {
   font-size: 1.5rem;
   padding: 0.15em 0.75em 0.15em 0.75em;
-  /* margin-left: 0.5rem; */
-  border-radius: 0.6em;
 }
 .bubble--large:first-child {
   margin-left: 0;
 }
+.bubble--alarm {
+  // border: 1px solid red;
+  box-shadow: 0 0 0 2px var(--c-alarm), inset 0 0 0 2px var(--c-alarm);
+  color: var(--c-alarm);
+  border-color: var(--c-alarm);
+  transform: scale(1.1) rotate(-2deg);
+  z-index: 1;
+}
 .bubble i {
   display: block;
   position: absolute;
-  top: -0.3rem;
-  left: -0.2rem;
+  top: 0.3em;
+  left: 0.5em;
   font-style: normal;
   font-size: 0.75em;
 }
 .bubble--interactive {
-  box-shadow: -2px -4px 12px rgba(0, 0, 0, 0.25) inset, 2px 6px 10px #fff inset;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000;
+  border-radius: 1rem;
 }
 .dark .bubble--interactive {
-  border-color: #fff;
-  box-shadow: 0 0 10px 2px var(--bubble-color) inset, 0 0 10px 2px var(--bubble-color);
+  box-shadow: 0 0 0 2px #000, 0 0 0 3px var(--bubble-color);
 }
 
 sup {

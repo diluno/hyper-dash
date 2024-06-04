@@ -15,12 +15,11 @@ const recentShow = computed(() => {
 
 <template>
   <div v-if="recentMovie">
-    <h2>Plex</h2>
+    <!-- <h2>Plex</h2> -->
     <div class="container"
          style="--bubble-color: #B3F5BB;">
       <div class="bubble"><i>🎬</i>{{ recentMovie }}</div>
       <div class="bubble"><i>📺</i>{{ recentShow }}</div>
-      <!-- <div class="bubble bubble--large"><i>🚃</i>{{ nextOnDeparture }}</div> -->
     </div>
   </div>
 </template>
