@@ -20,8 +20,8 @@ const co2Color = computed(() => {
 const tempEmoji = computed(() => {
   if (values.value.temp < 19) return '❄️';
   if (values.value.temp < 23) return '🌡️';
-  if (values.value.temp < 25) return '🔥';
-  return '🫠';
+  if (values.value.temp < 25) return '☀️';
+  return '🔥';
 });
 
 </script>
