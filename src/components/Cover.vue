@@ -1,14 +1,12 @@
 <script setup>
 import { watch, ref, computed } from "vue";
 import { entities } from "../store";
-import ColorThief from '/node_modules/colorthief/dist/color-thief.mjs'
 
 const show = ref(true);
 const coverBase = 'http://homeassistant.local:8123';
 const mediaEntities = ['media_player.living_room', 'media_player.bathroom', 'media_player.bedroom', 'media_player.kitchen']
 
 let timeout = null;
-const colorThief = new ColorThief();
 
 const coverUrl = computed(() => {
   if (!entities.value) return;
@@ -50,16 +48,6 @@ watch(show, (newShow) => {
   timeout = setTimeout(() => {
     show.value = true;
   }, 10000);
-});
-
-watch(coverUrl, (newUrl) => {
-  if (!newUrl) return;
-  const img = new Image();
-  img.src = newUrl;
-  img.onload = () => {
-    const color = colorThief.getColor(img);
-    console.log(color);
-  };
 });
 
 </script>
