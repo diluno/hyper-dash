@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "colorthief": "^2.4.0",
     "dayjs": "^1.11.10",
     "home-assistant-js-websocket": "^9.2.1",
     "jimp": "^0.22.12",

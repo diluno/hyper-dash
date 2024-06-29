@@ -1,12 +1,14 @@
 <script setup>
 import { watch, ref, computed } from "vue";
 import { entities } from "../store";
+import ColorThief from '/node_modules/colorthief/dist/color-thief.mjs'
 
 const show = ref(true);
 const coverBase = 'http://homeassistant.local:8123';
 const mediaEntities = ['media_player.living_room', 'media_player.bathroom', 'media_player.bedroom', 'media_player.kitchen']
 
 let timeout = null;
+const colorThief = new ColorThief();
 
 const coverUrl = computed(() => {
   if (!entities.value) return;
@@ -50,6 +52,16 @@ watch(show, (newShow) => {
   }, 10000);
 });
 
+watch(coverUrl, (newUrl) => {
+  if (!newUrl) return;
+  const img = new Image();
+  img.src = newUrl;
+  img.onload = () => {
+    const color = colorThief.getColor(img);
+    console.log(color);
+  };
+});
+
 </script>
 
 <template>
@@ -63,6 +75,8 @@ watch(show, (newShow) => {
       <span class="cover__track__title">{{ track.title }}</span>
     </div>
     <img class="cover__img"
+         ref="cover"
+         crossorigin="anonymous"
          :src="coverUrl" />
     <img class="cover__img"
          :src="coverUrl" />
@@ -95,16 +109,18 @@ watch(show, (newShow) => {
     &__artist,
     &__title {
       display: block;
-      font-size: .75rem;
-      color: rgba(#000, .8);
-      background-color: rgba(#fff, .6);
+      font-size: 1rem;
+      border-radius: .4em;
+      color: rgba(#fff, 1);
+      background-color: rgba(#000, .4);
       backdrop-filter: blur(5px);
-      padding: .15em .3rem;
-      font-weight: 600;
+      padding: .2em .5rem;
+      // font-weight: 600;
     }
 
     &__artist {
       font-weight: 400;
+      font-size: .8rem;
     }
   }
 

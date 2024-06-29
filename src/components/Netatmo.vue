@@ -19,9 +19,9 @@ const co2Color = computed(() => {
 
 const tempEmoji = computed(() => {
   if (values.value.temp < 19) return '❄️';
-  if (values.value.temp < 22.5) return '🌡️';
+  if (values.value.temp < 23) return '🌡️';
   if (values.value.temp < 25) return '🔥';
-  return '🥵';
+  return '🫠';
 });
 
 </script>
@@ -45,15 +45,15 @@ const tempEmoji = computed(() => {
 </template>
 
 <style lang="scss">
-.co2 {
+.bubble .co2 {
   color: v-bind(co2Color);
   background: currentColor;
-  width: 1rem;
-  height: 1rem;
-  // border-radius: 99%;
-  border: 1px solid rgba(#000, .3);
-  transform: translate(.1rem, .1rem);
-  filter: drop-shadow(-4px -4px currentColor);
+  width: 2em;
+  height: 2em;
+  border-radius: 99%;
+  left: -.4em;
+  top: -.4em;
+  filter: blur(.3em);
 }
 
 .alarm {
