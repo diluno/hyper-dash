@@ -80,16 +80,18 @@ watch(show, (newShow) => {
   right: 0;
   width: 100%;
   height: 100%;
-  z-index: 10;
+  z-index: 0;
+  pointer-events: none;
   transform-origin: 100% 0;
   transition: transform .5s var(--ease), border-radius .5s var(--ease), top .5s var(--ease), right .5s var(--ease);
 
   &__track {
+    display: flex;
+    display: none;
     position: absolute;
     bottom: .5rem;
     left: .5rem;
     z-index: 2;
-    display: flex;
     gap: 2px;
     flex-direction: column;
     align-items: flex-start;
@@ -138,6 +140,9 @@ watch(show, (newShow) => {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: blur(50px);
+    transform: scale(1.2);
+    // opacity: .8;
     transition: filter .5s var(--ease), border-radius .5s var(--ease);
   }
 }

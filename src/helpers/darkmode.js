@@ -23,10 +23,10 @@ class DarkMode {
     const now = dayjs();
     const isDay = now.isBetween(sunrise, lastLight);
     if (isDay) {
-      document.body.classList.remove('dark');
     } else {
       document.body.classList.add('dark');
     }
+    document.body.classList.remove('dark');
     return data;
   }
 }
