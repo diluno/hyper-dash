@@ -29,6 +29,10 @@ function reload() {
   location.reload();
 }
 
+function toggleDarkmode() {
+  document.body.classList.toggle('dark');
+}
+
 function sendMessage(_msg) {
   conn.sendMessagePromise(_msg);
 }
@@ -42,6 +46,9 @@ function sendMessage(_msg) {
       <a href="#"
          @click="reload"
          class="reload-btn"></a>
+      <a href="#"
+         @click="toggleDarkmode"
+         class="dark-btn"></a>
       <div class="bubbles">
         <Time />
         <Netatmo />
@@ -53,7 +60,7 @@ function sendMessage(_msg) {
 </template>
 
 <style lang="scss">
-.reload-btn {
+.reload-btn, .dark-btn {
   position: fixed;
   bottom: 0;
   right: 0;
@@ -61,5 +68,9 @@ function sendMessage(_msg) {
   height: 3rem;
   display: block;
   background: transparent;
+}
+.dark-btn {
+  right: auto;
+  left: 0;
 }
 </style>
