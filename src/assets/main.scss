@@ -38,6 +38,7 @@ body.dark {
   --bubble-color: #aff;
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 8px;
   padding: 8px;
 }
@@ -75,6 +76,17 @@ body.dark {
   border-color: var(--c-alarm);
   transform: scale(1.1) rotate(-2deg);
   z-index: 1;
+}
+.bubble--image {
+  padding: 0;
+  overflow: hidden;
+  height: 2.25em;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 .bubble i {
   display: block;
