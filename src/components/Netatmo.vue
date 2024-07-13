@@ -6,7 +6,8 @@ const values = computed(() => {
   return {
     co2: entities.value ? entities.value['sensor.indoor_co2'].state : 0,
     temp: entities.value ? entities.value['sensor.indoor_temperature'].state : 0,
-    humidity: entities.value ? entities.value['sensor.indoor_humidity'].state : 0
+    humidity: entities.value ? entities.value['sensor.indoor_humidity'].state : 0,
+    temp_outdoor: entities.value ? entities.value['sensor.indoor_outdoor_temperature'].state : 0
   };
 });
 
@@ -36,6 +37,7 @@ const tempEmoji = computed(() => {
            :class="{ 'bubble--alarm': values.co2 > 1100 }"><i class="co2"></i>{{ values.co2 }}<sup>ppm</sup></div>
       <div class="bubble bubble--large"><i>{{ tempEmoji }}</i>{{ values.temp }}<sup>°C</sup></div>
       <div class="bubble bubble--large"><i>💧</i>{{ values.humidity }}<sup>%</sup></div>
+      <div class="bubble bubble--large"><i>🌳</i>{{ values.temp_outdoor }}<sup>°C</sup></div>
     </div>
     <div class="container"
          v-else>

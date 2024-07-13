@@ -140,10 +140,15 @@ watch(show, (newShow) => {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: blur(50px);
+    filter: blur(30px);
     transform: scale(1.2);
     // opacity: .8;
     transition: filter .5s var(--ease), border-radius .5s var(--ease);
   }
+
+}
+
+.dark .cover__img {
+  opacity: .5;
 }
 </style>
