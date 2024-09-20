@@ -4,7 +4,7 @@ import { computed } from 'vue';
 
 const emit = defineEmits(['sendMessage']);
 const mediaEntities = [
-  'media_player.living_room',
+  'media_player.living_room_symfonisk',
   'media_player.bathroom',
   'media_player.bedroom',
   'media_player.kitchen',
@@ -42,7 +42,7 @@ function nextTrack() {
 </script>
 
 <template>
-  <div v-if="track.playing">
+  <div v-if="track && track.playing">
     <!-- <h2>Sonos</h2> -->
     <div class="container" style="--bubble-color: #fbcdff">
       <div class="bubble bubble--image" v-if="track.cover">

@@ -50,12 +50,12 @@ const tempEmoji = computed(() => {
 .bubble .co2 {
   color: v-bind(co2Color);
   background: currentColor;
-  width: 2em;
-  height: 2em;
+  width: 1.8em;
+  height: 1.8em;
   border-radius: 99%;
   left: -.4em;
   top: -.4em;
-  filter: blur(.3em);
+  filter: blur(.1em);
 }
 
 .alarm {
