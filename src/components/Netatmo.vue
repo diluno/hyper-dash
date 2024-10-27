@@ -18,9 +18,9 @@ const values = computed(() => {
 });
 
 const co2Color = computed(() => {
-  if (values.value.co2 < 800) return '#43C041';
-  if (values.value.co2 < 1000) return '#EFDF07';
-  if (values.value.co2 < 1400) return '#EE5420';
+  if (values.value.co2 < 900) return '#43C041';
+  if (values.value.co2 < 1100) return '#EFDF07';
+  if (values.value.co2 < 1500) return '#EE5420';
   return '#FF0000';
 });
 
@@ -29,6 +29,14 @@ const tempEmoji = computed(() => {
   if (values.value.temp < 23) return '🌡️';
   if (values.value.temp < 25) return '☀️';
   return '🔥';
+});
+
+const co2style = computed(() => {
+  const _show = values.value.co2 > 900;
+  return {
+    color: co2Color.value,
+    display: _show ? 'block' : 'none',
+  };
 });
 </script>
 
@@ -40,6 +48,7 @@ const tempEmoji = computed(() => {
       style="--bubble-color: #0673ee; --text-color: var(--c-bg)"
       v-if="values.co2 != 'unavailable'"
     >
+      <div class="co2-bubble" :style="co2style">⚠</div>
       <div
         class="bubble bubble--large"
         :class="{ 'bubble--alarm': values.co2 > 1100 }"
@@ -73,6 +82,15 @@ const tempEmoji = computed(() => {
 </template>
 
 <style lang="scss">
+.co2-bubble {
+  color: red;
+  border: 1px solid currentColor;
+  text-align: center;
+  line-height: 2.5rem;
+  // height: 2em;
+  width: 2.5rem;
+  font-size: 1.25em;
+}
 .bubble .co2 {
   color: v-bind(co2Color);
   background: currentColor;
