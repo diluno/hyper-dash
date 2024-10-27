@@ -1,20 +1,26 @@
 <script setup>
-import { entities } from "../store";
+import { entities } from '../store';
 import { computed, ref, watch } from 'vue';
 
 const values = computed(() => {
   return {
     co2: entities.value ? entities.value['sensor.indoor_co2'].state : 0,
-    temp: entities.value ? entities.value['sensor.indoor_temperature'].state : 0,
-    humidity: entities.value ? entities.value['sensor.indoor_humidity'].state : 0,
-    temp_outdoor: entities.value ? entities.value['sensor.indoor_outdoor_temperature'].state : 0
+    temp: entities.value
+      ? entities.value['sensor.indoor_temperature'].state
+      : 0,
+    humidity: entities.value
+      ? entities.value['sensor.indoor_humidity'].state
+      : 0,
+    temp_outdoor: entities.value
+      ? entities.value['sensor.indoor_outdoor_temperature'].state
+      : 0,
   };
 });
 
 const co2Color = computed(() => {
-  if (values.value.co2 < 800) return '#00E400';
-  if (values.value.co2 < 1000) return '#FFFF00';
-  if (values.value.co2 < 1400) return '#FF7E00';
+  if (values.value.co2 < 800) return '#43C041';
+  if (values.value.co2 < 1000) return '#EFDF07';
+  if (values.value.co2 < 1400) return '#EE5420';
   return '#FF0000';
 });
 
@@ -24,25 +30,41 @@ const tempEmoji = computed(() => {
   if (values.value.temp < 25) return '☀️';
   return '🔥';
 });
-
 </script>
 
 <template>
   <div>
     <!-- <h2>Netatmo</h2> -->
-    <div class="container"
-         style="--bubble-color: #BCEEF8;"
-         v-if="values.co2 != 'unavailable'">
-      <div class="bubble bubble--large"
-           :class="{ 'bubble--alarm': values.co2 > 1100 }"><i class="co2"></i>{{ values.co2 }}<sup>ppm</sup></div>
-      <div class="bubble bubble--large"><i>{{ tempEmoji }}</i>{{ values.temp }}<sup>°C</sup></div>
-      <div class="bubble bubble--large"><i>💧</i>{{ values.humidity }}<sup>%</sup></div>
-      <div class="bubble bubble--large"><i>🌳</i>{{ values.temp_outdoor }}<sup>°C</sup></div>
+    <div
+      class="container"
+      style="--bubble-color: #0673ee; --text-color: var(--c-bg)"
+      v-if="values.co2 != 'unavailable'"
+    >
+      <div
+        class="bubble bubble--large"
+        :class="{ 'bubble--alarm': values.co2 > 1100 }"
+      >
+        <i class="co2"></i>
+        {{ values.co2 }}
+        <sup>ppm</sup>
+      </div>
+      <div class="bubble bubble--large">
+        <i>{{ tempEmoji }}</i>
+        {{ values.temp }}
+        <sup>°C</sup>
+      </div>
+      <div class="bubble bubble--large">
+        <i>💧</i>
+        {{ values.humidity }}
+        <sup>%</sup>
+      </div>
+      <div class="bubble bubble--large">
+        <i>🌳</i>
+        {{ values.temp_outdoor }}
+        <sup>°C</sup>
+      </div>
     </div>
-    <div class="container"
-         v-else>
-      🙈
-    </div>
+    <div class="container" v-else>🙈</div>
   </div>
 </template>
 
@@ -50,12 +72,23 @@ const tempEmoji = computed(() => {
 .bubble .co2 {
   color: v-bind(co2Color);
   background: currentColor;
-  width: 1.8em;
-  height: 1.8em;
+  width: 1em;
+  height: 1em;
   border-radius: 99%;
-  left: -.4em;
-  top: -.4em;
-  filter: blur(.1em);
+  left: .25em;
+  top: 50%;
+  transform: translateY(-50%);
+  // filter: blur(.1em);
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 99%;
+    background: currentColor;
+    filter: blur(0.1em);
+  }
 }
 
 .alarm {
@@ -64,7 +97,7 @@ const tempEmoji = computed(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(red, .2);
+  background: rgba(red, 0.2);
   box-sizing: border-box;
   z-index: 10;
   box-shadow: 0 0 100px red inset;
@@ -74,7 +107,7 @@ const tempEmoji = computed(() => {
 
 @keyframes pulseshadow {
   0% {
-    box-shadow: 0 0 50px rgba(red, .2) inset;
+    box-shadow: 0 0 50px rgba(red, 0.2) inset;
   }
 
   100% {

@@ -16,6 +16,8 @@ class DarkMode {
     }, 60000);
   }
   async check() {
+    // document.body.classList.remove('dark');
+    // return;
     const response = await fetch(this.apiUrl);
     const data = await response.json();
     const lastLight = dayjs(data.results.dusk, 'h:m:s A');

@@ -44,7 +44,10 @@ function nextTrack() {
 <template>
   <div v-if="track && track.playing">
     <!-- <h2>Sonos</h2> -->
-    <div class="container" style="--bubble-color: #fbcdff">
+    <div
+      class="container"
+      style="--bubble-color: #ee5420; --text-color: var(--c-bg)"
+    >
       <div class="bubble bubble--image" v-if="track.cover">
         <img :src="coverBase + track.cover" alt="" />
       </div>
