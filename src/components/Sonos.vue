@@ -39,6 +39,16 @@ function nextTrack() {
     },
   });
 }
+function stopMedia() {
+  emit('sendMessage', {
+    type: 'call_service',
+    domain: 'media_player',
+    service: 'media_stop',
+    service_data: {
+      entity_id: 'media_player.kitchen',
+    },
+  });
+}
 </script>
 
 <template>
@@ -51,9 +61,16 @@ function nextTrack() {
       <div class="bubble bubble--image" v-if="track.cover">
         <img :src="coverBase + track.cover" alt="" />
       </div>
-      <div class="bubble" v-if="track.artist">{{ track.artist }}</div>
-      <div class="bubble" v-if="track.title">{{ track.title }}</div>
+      <div class="bubble" v-if="track.artist">
+        <small>Artist</small>
+        {{ track.artist }}
+      </div>
+      <div class="bubble" v-if="track.title">
+        <small>Song</small>
+        {{ track.title }}
+      </div>
       <div class="bubble bubble--interactive" @click="nextTrack">⇥</div>
+      <div class="bubble bubble--interactive" @click="stopMedia">■</div>
     </div>
   </div>
 </template>

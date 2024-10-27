@@ -16,14 +16,18 @@ setInterval(() => {
   check();
 }, 5000);
 check();
-
 </script>
 
 <template>
-  <div class="container"
-       style="--bubble-color: #EFDF07;">
-    <div class="bubble">{{ time }}</div>
-    <div class="bubble">{{ date }}</div>
+  <div class="container" style="--bubble-color: #efdf07">
+    <div class="bubble">
+      <small>Time</small>
+      {{ time }}
+    </div>
+    <div class="bubble">
+      <small>Date</small>
+      {{ date }}
+    </div>
     <!-- <div class="bubble bubble--large">{{ day }}</div> -->
   </div>
 </template>

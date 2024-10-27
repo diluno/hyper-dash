@@ -2,15 +2,26 @@
 import { entities } from '../store';
 import { computed, ref, watch } from 'vue';
 
+const truncateLength = 33;
+
 const recentMovie = computed(() => {
   if (!entities.value) return null;
-  return entities.value['sensor.servelat_library_movies'].attributes
-    .last_added_item;
+  let _item =
+    entities.value['sensor.servelat_library_movies'].attributes.last_added_item;
+  if (_item.length > truncateLength) {
+    return _item.substring(0, truncateLength) + '...';
+  }
+  return _item;
 });
 const recentShow = computed(() => {
   if (!entities.value) return null;
-  return entities.value['sensor.servelat_library_tv_shows'].attributes
-    .last_added_item;
+  let _item =
+    entities.value['sensor.servelat_library_tv_shows'].attributes
+      .last_added_item;
+  if (_item.length > truncateLength) {
+    return _item.substring(0, truncateLength) + '...';
+  }
+  return _item;
 });
 </script>
 
@@ -22,11 +33,11 @@ const recentShow = computed(() => {
       style="--bubble-color: #076c05; --text-color: var(--c-bg)"
     >
       <div class="bubble">
-        <i>🎬</i>
+        <small>Recent Movie</small>
         {{ recentMovie }}
       </div>
       <div class="bubble">
-        <i>📺</i>
+        <small>Recent Show</small>
         {{ recentShow }}
       </div>
     </div>

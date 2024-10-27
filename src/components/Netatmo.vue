@@ -44,22 +44,26 @@ const tempEmoji = computed(() => {
         class="bubble bubble--large"
         :class="{ 'bubble--alarm': values.co2 > 1100 }"
       >
-        <i class="co2"></i>
+        <!-- <i class="co2"></i> -->
+        <small>CO2</small>
         {{ values.co2 }}
         <sup>ppm</sup>
       </div>
       <div class="bubble bubble--large">
-        <i>{{ tempEmoji }}</i>
+        <!-- <i>{{ tempEmoji }}</i> -->
+        <small>Temperature Indoor</small>
         {{ values.temp }}
         <sup>°C</sup>
       </div>
       <div class="bubble bubble--large">
-        <i>💧</i>
+        <!-- <i>💧</i> -->
+        <small>Humidity Indoor</small>
         {{ values.humidity }}
         <sup>%</sup>
       </div>
       <div class="bubble bubble--large">
-        <i>🌳</i>
+        <!-- <i>🌳</i> -->
+        <small>Temperature Outdoor</small>
         {{ values.temp_outdoor }}
         <sup>°C</sup>
       </div>
@@ -75,7 +79,7 @@ const tempEmoji = computed(() => {
   width: 1em;
   height: 1em;
   border-radius: 99%;
-  left: .25em;
+  left: 0.25em;
   top: 50%;
   transform: translateY(-50%);
   // filter: blur(.1em);
