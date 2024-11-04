@@ -10,6 +10,7 @@ const mediaEntities = [
   'media_player.kitchen',
 ];
 const coverBase = 'http://homeassistant.local:8123';
+// const coverBase = 'https://hassio.dil.uno';
 
 const track = computed(() => {
   const t = { artist: '', title: '', playing: false };
@@ -56,7 +57,7 @@ function stopMedia() {
     <!-- <h2>Sonos</h2> -->
     <div
       class="container"
-      style="--bubble-color: #ee5420; --text-color: var(--c-bg)"
+      style="--bubble-color: #FE7E40; --text-color: var(--c-bg)"
     >
       <div class="bubble bubble--image" v-if="track.cover">
         <img :src="coverBase + track.cover" alt="" />
@@ -69,7 +70,7 @@ function stopMedia() {
         <small>Song</small>
         {{ track.title }}
       </div>
-      <div class="bubble bubble--interactive" @click="nextTrack">⇥</div>
+      <div class="bubble bubble--interactive" @click="nextTrack"><i data-feather="skip-forward"></i></div>
       <div class="bubble bubble--interactive" @click="stopMedia">■</div>
     </div>
   </div>

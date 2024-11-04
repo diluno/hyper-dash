@@ -19,7 +19,7 @@ check();
 </script>
 
 <template>
-  <div class="container" style="--bubble-color: #efdf07">
+  <div class="container" style="--bubble-color: #EED6B4">
     <div class="bubble">
       <small>Time</small>
       {{ time }}

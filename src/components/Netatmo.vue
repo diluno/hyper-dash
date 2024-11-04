@@ -44,9 +44,9 @@ const co2style = computed(() => {
   <div>
     <!-- <h2>Netatmo</h2> -->
     <div
-      class="container"
-      style="--bubble-color: #0673ee; --text-color: var(--c-bg)"
-      v-if="values.co2 != 'unavailable'"
+    class="container"
+    style="--bubble-color: #FFB006; --text-color: var(--c-bg)"
+    v-if="values.co2 != 'unavailable'"
     >
       <div class="co2-bubble" :style="co2style">⚠</div>
       <div

@@ -11,6 +11,7 @@
   "dependencies": {
     "colorthief": "^2.4.0",
     "dayjs": "^1.11.10",
+    "feather-icons": "^4.29.2",
     "home-assistant-js-websocket": "^9.2.1",
     "jimp": "^0.22.12",
     "npm": "^10.5.0",

@@ -52,8 +52,8 @@ function sendMessage(_msg) {
       <div class="bubbles">
         <Time />
         <Netatmo />
-        <Plex />
         <Sonos @sendMessage="sendMessage" />
+        <Plex />
       </div>
     </main>
   </Suspense>
