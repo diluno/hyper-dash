@@ -19,7 +19,7 @@ const values = computed(() => {
 
 const co2Color = computed(() => {
   if (values.value.co2 < 900) return '#43C041';
-  if (values.value.co2 < 1100) return '#EFDF07';
+  if (values.value.co2 < 1100) return '#FFB006';
   if (values.value.co2 < 1500) return '#EE5420';
   return '#FF0000';
 });

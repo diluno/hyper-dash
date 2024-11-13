@@ -1,7 +1,7 @@
 <script setup>
 import feather from 'feather-icons';
 import { entities } from '../store';
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 
 const emit = defineEmits(['sendMessage']);
 const mediaEntities = [
@@ -14,8 +14,9 @@ const coverBase = 'http://homeassistant.local:8123';
 // const coverBase = 'https://hassio.dil.uno';
 
 watch(entities, () => {
+  console.log('replace');
   feather.replace();
-});
+}, { immediate: true });
 
 const track = computed(() => {
   const t = { artist: '', title: '', playing: false };
