@@ -34,7 +34,8 @@ const tempEmoji = computed(() => {
 const co2style = computed(() => {
   const _show = values.value.co2 > 900;
   return {
-    color: co2Color.value,
+    backgroundColor: co2Color.value,
+    borderColor: co2Color.value,
     display: _show ? 'block' : 'none',
   };
 });
@@ -83,8 +84,10 @@ const co2style = computed(() => {
 
 <style lang="scss">
 .co2-bubble {
-  color: red;
-  border: 1px solid currentColor;
+  border: 2px solid currentColor;
+  background: var(--bubble-color);
+  color: var(--c-fg);
+  border-radius: 16px;
   text-align: center;
   line-height: 2.5rem;
   // height: 2em;

@@ -2,7 +2,7 @@
 import { entities } from '../store';
 import { computed, ref, watch } from 'vue';
 
-const truncateLength = 33;
+const truncateLength = 30;
 
 const recentMovie = computed(() => {
   if (!entities.value) return null;

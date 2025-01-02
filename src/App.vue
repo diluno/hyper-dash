@@ -42,7 +42,7 @@ function sendMessage(_msg) {
 <template>
   <Suspense>
     <main>
-      <Cover />
+      <!-- <Cover /> -->
       <a href="#"
          @click="reload"
          class="reload-btn"></a>

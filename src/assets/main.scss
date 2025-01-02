@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 
 :root {
   --c-alarm: #f84a48;
@@ -11,7 +12,7 @@ html {
 }
 body {
   margin: 0;
-  font-family: 'Manrope', Helvetica, sans-serif;
+  font-family: 'Space Grotesk', Helvetica, sans-serif;
   font-optical-sizing: auto;
   background: var(--c-bg);
   color: var(--c-fg);
@@ -51,7 +52,7 @@ body.dark {
   position: relative;
   font-size: 1.25rem;
   box-sizing: border-box;
-  padding-right: 0.75em;
+  padding-right: 0.6em;
   padding-top: 20px;
 
   small {
@@ -65,8 +66,8 @@ body.dark {
     top: 0;
     left: 0;
     white-space: nowrap;
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 0.3em;
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 0.1em;
   }
 }
 .bubble:has(i) {
@@ -116,9 +117,10 @@ body.dark {
 // }
 .bubble--interactive {
   // background-color: var(--bubble-color);
-  border: 1px solid var(--bubble-color);
+  border: 2px solid var(--bubble-color);
   // color: var(--c-fg);
-  padding: 0.25em 0.5em;
+  border-radius: 16px;
+  padding: 0.2em 0.5em;
 }
 .dark .bubble--interactive {
   // box-shadow: 0 0 0 2px #000, 0 0 0 3px var(--bubble-color);
