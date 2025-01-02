@@ -10,7 +10,7 @@ class HomeAssistant {
     // this.hassioUrl = 'http://homeassistant.local:8123';
     this.hassioUrl = 'https://hassio.dil.uno';
     this.token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2ZDM5NGE5N2VhYTM0ZmJiYWY0MDFiYTMzZjRhZjFiYyIsImlhdCI6MTcwNTA5NDM2MywiZXhwIjoyMDIwNDU0MzYzfQ.91RstDHi9OG1U0_OFWudSjaNGzTo5RWX2laKbhIFZMU';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIzYTg1YjIxNGU3NjE0YjlmOGYxMTNhMTU0YWRkZGU0ZCIsImlhdCI6MTczNTg0NzQwMiwiZXhwIjoyMDUxMjA3NDAyfQ.L92_K-gAIvgYPNN_8qQfpsVoMEw_2HVSXFh_K0ravyQ';
   }
   async connectSocket() {
     let auth;
