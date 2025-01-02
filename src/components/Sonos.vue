@@ -5,7 +5,7 @@ import { computed, watch } from 'vue';
 
 const emit = defineEmits(['sendMessage']);
 const mediaEntities = [
-  'media_player.living_room_symfonisk',
+  'media_player.living_room_2',
   'media_player.bathroom',
   'media_player.bedroom',
   'media_player.kitchen',
@@ -14,7 +14,6 @@ const coverBase = 'http://homeassistant.local:8123';
 // const coverBase = 'https://hassio.dil.uno';
 
 watch(entities, () => {
-  console.log('replace');
   feather.replace();
 }, { immediate: true });
 

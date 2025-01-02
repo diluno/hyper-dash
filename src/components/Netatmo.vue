@@ -4,7 +4,7 @@ import { computed, ref, watch } from 'vue';
 
 const values = computed(() => {
   return {
-    co2: entities.value ? entities.value['sensor.indoor_co2'].state : 0,
+    co2: entities.value ? entities.value['sensor.indoor_carbon_dioxide'].state : 0,
     temp: entities.value
       ? entities.value['sensor.indoor_temperature'].state
       : 0,
