@@ -61,7 +61,7 @@ const co2style = computed(() => {
       </div>
       <div class="bubble bubble--large">
         <!-- <i>{{ tempEmoji }}</i> -->
-        <small>Temperature Indoor</small>
+        <small>Temp Indoor</small>
         {{ values.temp }}
         <sup>°C</sup>
       </div>
@@ -73,7 +73,7 @@ const co2style = computed(() => {
       </div>
       <div class="bubble bubble--large">
         <!-- <i>🌳</i> -->
-        <small>Temperature Outdoor</small>
+        <small>Temp Outdoor</small>
         {{ values.temp_outdoor }}
         <sup>°C</sup>
       </div>

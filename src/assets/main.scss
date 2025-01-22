@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
   --c-alarm: #f84a48;
@@ -12,7 +11,7 @@ html {
 }
 body {
   margin: 0;
-  font-family: 'Space Grotesk', Helvetica, sans-serif;
+  font-family: 'Inter', Helvetica, sans-serif;
   font-optical-sizing: auto;
   background: var(--c-bg);
   color: var(--c-fg);
@@ -60,13 +59,13 @@ body.dark {
     width: 100%;
     font-size: 12px;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 0.05em;
     position: absolute;
     top: 0;
     left: 0;
     white-space: nowrap;
-    border-bottom: 2px solid currentColor;
+    border-bottom: 1px solid currentColor;
     padding-bottom: 0.1em;
   }
 }
