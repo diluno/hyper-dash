@@ -18,9 +18,9 @@ const values = computed(() => {
 });
 
 const co2Color = computed(() => {
-  if (values.value.co2 < 900) return '#43C041';
-  if (values.value.co2 < 1100) return '#FFB006';
-  if (values.value.co2 < 1500) return '#EE5420';
+  if (values.value.co2 < 1000) return '#43C041';
+  if (values.value.co2 < 1300) return '#FFB006';
+  if (values.value.co2 < 1600) return '#EE5420';
   return '#FF0000';
 });
 
@@ -32,7 +32,7 @@ const tempEmoji = computed(() => {
 });
 
 const co2style = computed(() => {
-  const _show = values.value.co2 > 900;
+  const _show = values.value.co2 > 1000;
   return {
     backgroundColor: co2Color.value,
     borderColor: co2Color.value,
@@ -52,7 +52,7 @@ const co2style = computed(() => {
       <div class="co2-bubble" :style="co2style">⚠</div>
       <div
         class="bubble bubble--large"
-        :class="{ 'bubble--alarm': values.co2 > 1100 }"
+        :class="{ 'bubble--alarm': values.co2 > 1300 }"
       >
         <!-- <i class="co2"></i> -->
         <small>CO2</small>
