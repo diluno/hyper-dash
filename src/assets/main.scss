@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/satoshi');
 
 :root {
   --c-alarm: #f84a48;
@@ -11,7 +11,7 @@ html {
 }
 body {
   margin: 0;
-  font-family: 'Inter', Helvetica, sans-serif;
+  font-family: 'Satoshi', Helvetica, sans-serif;
   font-optical-sizing: auto;
   background: var(--c-bg);
   color: var(--c-fg);
@@ -38,35 +38,40 @@ body.dark {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  column-gap: 0.75rem;
-  row-gap: 0.5rem;
+  column-gap: 0.2rem;
+  row-gap: 0.2rem;
   padding: 8px;
 }
 .bubble {
   display: block;
-  // background-color: var(--bubble-color);
+  background-color: var(--bubble-color);
   color: var(--bubble-color);
-  // padding: 0.2em 0.5em;
-  // border-radius: 0.4em;
+  color: var(--c-fg);
+  padding: 0.2em .5em;
+  padding-top: 24px;
+  border-radius: 0.1em;
   position: relative;
   font-size: 1.25rem;
+  font-weight: 400;
   box-sizing: border-box;
-  padding-right: 0.6em;
-  padding-top: 20px;
+  overflow: hidden;
 
   small {
     display: block;
     width: 100%;
     font-size: 12px;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 800;
     letter-spacing: 0.05em;
     position: absolute;
     top: 0;
     left: 0;
     white-space: nowrap;
-    border-bottom: 1px solid currentColor;
+    // border-bottom: 1px solid currentColor;
+    padding: .5em 1em;
+    box-sizing: border-box;
     padding-bottom: 0.1em;
+    background: rgba(#fff, .2);
   }
 }
 .bubble:has(i) {
@@ -80,7 +85,6 @@ body.dark {
 }
 .bubble--large {
   font-size: 2rem;
-  padding-top: 14px;
   // padding: 0.01em 0.3em 0.01em 0.3em;
 }
 .bubble--large:first-child {
@@ -97,7 +101,7 @@ body.dark {
 .bubble--image {
   padding: 0;
   overflow: hidden;
-  height: 1.7em;
+  height: 3em;
 
   img {
     width: 100%;
@@ -127,6 +131,7 @@ body.dark {
 
 sup {
   font-size: 0.5em;
+  margin-left: -.3em;
 }
 
 h2 {

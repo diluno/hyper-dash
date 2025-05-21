@@ -62,7 +62,7 @@ function stopMedia() {
     <!-- <h2>Sonos</h2> -->
     <div
       class="container"
-      style="--bubble-color: #fe7e40; --text-color: var(--c-bg)"
+      style="--bubble-color: #97a4d7; --text-color: var(--c-bg)"
     >
       <div class="bubble bubble--image" v-if="track.cover">
         <img :src="coverBase + track.cover" alt="" />
@@ -75,10 +75,10 @@ function stopMedia() {
         <small>Song</small>
         {{ track.title }}
       </div>
-      <div class="bubble bubble--interactive" @click="nextTrack">
+      <!-- <div class="bubble bubble--interactive" @click="nextTrack">
         <i data-feather="skip-forward"></i>
       </div>
-      <div class="bubble bubble--interactive" @click="stopMedia">■</div>
+      <div class="bubble bubble--interactive" @click="stopMedia">■</div> -->
     </div>
   </div>
 </template>
