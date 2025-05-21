@@ -50,6 +50,14 @@ watch(show, (newShow) => {
   }, 10000);
 });
 
+watch(coverUrl, (newUrl) => {
+  if (newUrl) {
+    document.body.classList.add('has-cover');
+  } else {
+    document.body.classList.remove('has-cover'); 
+  }
+});
+
 </script>
 
 <template>
@@ -57,11 +65,11 @@ watch(show, (newShow) => {
        @click="show = !show"
        :class="{ hidden: !show }"
        v-if="coverUrl">
-    <div class="cover__track">
+    <!-- <div class="cover__track">
       <span v-if="track.artist"
             class="cover__track__artist">{{ track.artist }}</span>
       <span class="cover__track__title">{{ track.title }}</span>
-    </div>
+    </div> -->
     <img class="cover__img"
          ref="cover"
          crossorigin="anonymous"
@@ -140,15 +148,15 @@ watch(show, (newShow) => {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: blur(30px);
-    transform: scale(1.2);
-    opacity: .8;
+    // filter: blur(30px);
+    // transform: scale(1.2);
+    opacity: 1;
     transition: filter .5s var(--ease), border-radius .5s var(--ease);
   }
 
 }
 
-.dark .cover__img {
-  opacity: .1;
-}
+// .dark .cover__img {
+//   opacity: .1;
+// }
 </style>

@@ -2,9 +2,13 @@
 import { entities } from '../store';
 import { computed, ref, watch } from 'vue';
 
+const limits = [900, 1200, 1400];
+
 const values = computed(() => {
   return {
-    co2: entities.value ? entities.value['sensor.indoor_carbon_dioxide'].state : 0,
+    co2: entities.value
+      ? entities.value['sensor.indoor_carbon_dioxide'].state
+      : 0,
     temp: entities.value
       ? entities.value['sensor.indoor_temperature'].state
       : 0,
@@ -18,9 +22,9 @@ const values = computed(() => {
 });
 
 const co2Color = computed(() => {
-  if (values.value.co2 < 1000) return '#43C041';
-  if (values.value.co2 < 1300) return '#FFB006';
-  if (values.value.co2 < 1600) return '#EE5420';
+  if (values.value.co2 < limits[0]) return '#43C041';
+  if (values.value.co2 < limits[1]) return '#FFB006';
+  if (values.value.co2 < limits[2]) return '#EE5420';
   return '#FF0000';
 });
 
@@ -42,17 +46,13 @@ const co2style = computed(() => {
 </script>
 
 <template>
-  <div>
+  <div class="bubbles-component">
     <!-- <h2>Netatmo</h2> -->
-    <div
-    class="container"
-    style="--bubble-color: #cf9fbd; --text-color: var(--c-bg)"
-    v-if="values.co2 != 'unavailable'"
-    >
+    <div class="container" v-if="values.co2 != 'unavailable'">
       <div class="co2-bubble" :style="co2style">⚠</div>
       <div
         class="bubble bubble--large"
-        :class="{ 'bubble--alarm': values.co2 > 1300 }"
+        :class="{ 'bubble--alarm': values.co2 > limits[2] }"
       >
         <!-- <i class="co2"></i> -->
         <small>CO2</small>

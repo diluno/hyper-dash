@@ -26,12 +26,9 @@ const recentShow = computed(() => {
 </script>
 
 <template>
-  <div v-if="recentMovie">
+  <div class="bubbles-component" v-if="recentMovie">
     <!-- <h2>Plex</h2> -->
-    <div
-      class="container"
-      style="--bubble-color: #4b98d6; --text-color: var(--c-bg)"
-    >
+    <div class="container">
       <div class="bubble">
         <small>Recent Movie</small>
         {{ recentMovie }}

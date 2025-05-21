@@ -13,9 +13,13 @@ const mediaEntities = [
 const coverBase = 'http://homeassistant.local:8123';
 // const coverBase = 'https://hassio.dil.uno';
 
-watch(entities, () => {
-  feather.replace();
-}, { immediate: true });
+watch(
+  entities,
+  () => {
+    feather.replace();
+  },
+  { immediate: true }
+);
 
 const track = computed(() => {
   const t = { artist: '', title: '', playing: false };
@@ -58,15 +62,12 @@ function stopMedia() {
 </script>
 
 <template>
-  <div v-if="track && track.playing">
+  <div class="bubbles-component" v-if="track && track.playing">
     <!-- <h2>Sonos</h2> -->
-    <div
-      class="container"
-      style="--bubble-color: #97a4d7; --text-color: var(--c-bg)"
-    >
-      <div class="bubble bubble--image" v-if="track.cover">
+    <div class="container">
+      <!-- <div class="sonos-cover" v-if="track.cover">
         <img :src="coverBase + track.cover" alt="" />
-      </div>
+      </div> -->
       <div class="bubble" v-if="track.artist">
         <small>Artist</small>
         {{ track.artist }}
@@ -83,4 +84,16 @@ function stopMedia() {
   </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+.sonos-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  img {
+    width: 100%;
+  }
+}
+</style>
