@@ -150,7 +150,7 @@ watch(coverUrl, (newUrl) => {
     object-fit: cover;
     // filter: blur(30px);
     // transform: scale(1.2);
-    opacity: 1;
+    opacity: .3;
     transition: filter .5s var(--ease), border-radius .5s var(--ease);
   }
 
