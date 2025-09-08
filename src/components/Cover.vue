@@ -3,8 +3,14 @@ import { watch, ref, computed } from "vue";
 import { entities } from "../store";
 
 const show = ref(true);
-const coverBase = 'http://homeassistant.local:8123';
-const mediaEntities = ['media_player.living_room', 'media_player.bathroom', 'media_player.bedroom', 'media_player.kitchen']
+const coverBase = "http://homeassistant.local:8123";
+const mediaEntities = [
+  "media_player.living_room",
+  "media_player.bathroom",
+  "media_player.bedroom",
+  "media_player.kitchen",
+  "media_player.living_room_atv_2",
+];
 
 let timeout = null;
 
@@ -15,7 +21,7 @@ const coverUrl = computed(() => {
     const slug = mediaEntities[i];
     const entity = entities.value[slug];
     if (!entity) return;
-    if (entity.state == 'playing' && entity.attributes.entity_picture) {
+    if (entity.state == "playing" && entity.attributes.entity_picture) {
       url = coverBase + entity.attributes.entity_picture;
       break;
     }
@@ -24,13 +30,13 @@ const coverUrl = computed(() => {
 });
 
 const track = computed(() => {
-  const t = { artist: '', title: '', playing: false };
+  const t = { artist: "", title: "", playing: false };
   if (!entities.value) return t;
   for (let i = 0; i < mediaEntities.length; i++) {
     const slug = mediaEntities[i];
     const entity = entities.value[slug];
     if (!entity) return;
-    if (entity.state == 'playing') {
+    if (entity.state == "playing") {
       t.playing = true;
       t.artist = entity.attributes.media_artist;
       t.title = entity.attributes.media_title;
@@ -52,36 +58,38 @@ watch(show, (newShow) => {
 
 watch(coverUrl, (newUrl) => {
   if (newUrl) {
-    document.body.classList.add('has-cover');
+    document.body.classList.add("has-cover");
   } else {
-    document.body.classList.remove('has-cover'); 
+    document.body.classList.remove("has-cover");
   }
 });
-
 </script>
 
 <template>
-  <div class="cover"
-       @click="show = !show"
-       :class="{ hidden: !show }"
-       v-if="coverUrl">
+  <div
+    class="cover"
+    @click="show = !show"
+    :class="{ hidden: !show }"
+    v-if="coverUrl"
+  >
     <!-- <div class="cover__track">
       <span v-if="track.artist"
             class="cover__track__artist">{{ track.artist }}</span>
       <span class="cover__track__title">{{ track.title }}</span>
     </div> -->
-    <img class="cover__img"
-         ref="cover"
-         crossorigin="anonymous"
-         :src="coverUrl" />
-    <img class="cover__img"
-         :src="coverUrl" />
+    <img
+      class="cover__img"
+      ref="cover"
+      crossorigin="anonymous"
+      :src="coverUrl"
+    />
+    <img class="cover__img" :src="coverUrl" />
   </div>
 </template>
 
 <style lang="scss">
 .cover {
-  --ease: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+  --ease: cubic-bezier(0.075, 0.82, 0.165, 1);
 
   position: absolute;
   top: 0;
@@ -91,14 +99,15 @@ watch(coverUrl, (newUrl) => {
   z-index: 0;
   pointer-events: none;
   transform-origin: 100% 0;
-  transition: transform .5s var(--ease), border-radius .5s var(--ease), top .5s var(--ease), right .5s var(--ease);
+  transition: transform 0.5s var(--ease), border-radius 0.5s var(--ease),
+    top 0.5s var(--ease), right 0.5s var(--ease);
 
   &__track {
     display: flex;
     display: none;
     position: absolute;
-    bottom: .5rem;
-    left: .5rem;
+    bottom: 0.5rem;
+    left: 0.5rem;
     z-index: 2;
     gap: 2px;
     flex-direction: column;
@@ -108,24 +117,24 @@ watch(coverUrl, (newUrl) => {
     &__title {
       display: block;
       font-size: 1rem;
-      border-radius: .4em;
+      border-radius: 0.4em;
       color: rgba(#fff, 1);
-      background-color: rgba(#000, .4);
+      background-color: rgba(#000, 0.4);
       backdrop-filter: blur(5px);
-      padding: .2em .5rem;
+      padding: 0.2em 0.5rem;
       // font-weight: 600;
     }
 
     &__artist {
       font-weight: 400;
-      font-size: .8rem;
+      font-size: 0.8rem;
     }
   }
 
   &.hidden {
-    top: .5rem;
-    right: .5rem;
-    transform: scale(.15);
+    top: 0.5rem;
+    right: 0.5rem;
+    transform: scale(0.15);
 
     .cover__track {
       display: none;
@@ -136,7 +145,7 @@ watch(coverUrl, (newUrl) => {
 
       &:nth-child(2) {
         filter: blur(2rem);
-        opacity: .8;
+        opacity: 0.8;
       }
     }
   }
@@ -150,10 +159,9 @@ watch(coverUrl, (newUrl) => {
     object-fit: cover;
     // filter: blur(30px);
     // transform: scale(1.2);
-    opacity: .3;
-    transition: filter .5s var(--ease), border-radius .5s var(--ease);
+    opacity: 0.3;
+    transition: filter 0.5s var(--ease), border-radius 0.5s var(--ease);
   }
-
 }
 
 // .dark .cover__img {

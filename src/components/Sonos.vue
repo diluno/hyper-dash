@@ -1,7 +1,7 @@
 <script setup>
 import feather from "feather-icons";
 import { entities } from "../store";
-import { computed, watch } from "vue";
+import { computed, watch, ref } from "vue";
 
 const emit = defineEmits(["sendMessage"]);
 const mediaEntities = [
@@ -9,7 +9,9 @@ const mediaEntities = [
   "media_player.bathroom",
   "media_player.bedroom",
   "media_player.kitchen",
+  "media_player.living_room_atv_2",
 ];
+const activeEntity = ref("media_player.living_room_2");
 const coverBase = "http://homeassistant.local:8123";
 // const coverBase = 'https://hassio.dil.uno';
 
@@ -29,6 +31,7 @@ const track = computed(() => {
     const entity = entities.value[slug];
     if (!entity) return;
     if (entity.state == "playing") {
+      activeEntity.value = slug;
       t.playing = true;
       t.artist = entity.attributes.media_artist;
       t.title = entity.attributes.media_title;
@@ -45,7 +48,7 @@ function nextTrack() {
     domain: "media_player",
     service: "media_next_track",
     service_data: {
-      entity_id: "media_player.kitchen",
+      entity_id: activeEntity.value,
     },
   });
 }
@@ -55,7 +58,7 @@ function stopMedia() {
     domain: "media_player",
     service: "media_stop",
     service_data: {
-      entity_id: "media_player.kitchen",
+      entity_id: activeEntity.value,
     },
   });
 }

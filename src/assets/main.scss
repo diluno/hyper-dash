@@ -111,6 +111,9 @@ body.dark {
     width: 1.2rem;
     height: auto;
   }
+  path {
+    fill: var(--text-color);
+  }
 }
 sup {
   font-size: 0.5em;
