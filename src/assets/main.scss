@@ -1,4 +1,5 @@
-@import url('https://fonts.cdnfonts.com/css/satoshi');
+@import url("https://fonts.cdnfonts.com/css/satoshi");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 
 :root {
   --c-alarm: #f84a48;
@@ -11,7 +12,7 @@ html {
 }
 body {
   margin: 0;
-  font-family: 'Satoshi', Helvetica, sans-serif;
+  font-family: "Manrope", Helvetica, sans-serif;
   font-optical-sizing: auto;
   background: var(--bubble-color-1);
   color: var(--bubble-color-4);
@@ -29,7 +30,7 @@ body.dark {
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
-  padding: 10px;
+  padding: 20px;
 }
 
 .container {
@@ -37,7 +38,7 @@ body.dark {
   flex-wrap: wrap;
   align-items: center;
   column-gap: 1rem;
-  row-gap: 2px;
+  row-gap: 0.5rem;
   padding: 6px;
   position: relative;
 }
@@ -52,17 +53,17 @@ body.dark {
   // padding-top: 28px;
   // border-radius: 0.5em;
   position: relative;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1;
+  font-weight: 400;
   box-sizing: border-box;
-  overflow: hidden;
+  // overflow: hidden;
 
   small {
     display: none;
     width: 100%;
     font-size: 12px;
     text-transform: uppercase;
-    font-weight: 800;
     letter-spacing: 0.05em;
     position: absolute;
     top: 0;
@@ -78,7 +79,8 @@ body.dark {
   padding-left: 1.25em;
 }
 .bubble--large {
-  font-size: 3rem;
+  font-size: 4rem;
+  font-weight: 800;
 }
 .bubble--large:first-child {
   margin-left: 0;
@@ -108,7 +110,7 @@ body.dark {
 .bubble--interactive {
   background: currentColor;
   aspect-ratio: 1/1;
-  padding: .5rem;
+  padding: 0.5rem;
   border-radius: 99%;
   display: flex;
   align-items: center;
@@ -123,8 +125,11 @@ body.dark {
   }
 }
 sup {
-  font-size: 0.5em;
-  margin-left: -0.3em;
+  font-weight: 400;
+  font-size: 0.3em;
+  margin-left: -0.6em;
+  top: -0.5em;
+  position: relative;
 }
 
 h2 {
