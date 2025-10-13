@@ -3,7 +3,8 @@ import { watch, ref, computed } from "vue";
 import { entities } from "../store";
 
 const show = ref(true);
-const coverBase = "http://homeassistant.local:8123";
+// const coverBase = "http://homeassistant.local:8123";
+const coverBase = 'https://hassio.dil.uno';
 const mediaEntities = [
   "media_player.living_room",
   "media_player.bathroom",
@@ -99,6 +100,8 @@ watch(coverUrl, (newUrl) => {
   z-index: 0;
   pointer-events: none;
   transform-origin: 100% 0;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
   transition: transform 0.5s var(--ease), border-radius 0.5s var(--ease),
     top 0.5s var(--ease), right 0.5s var(--ease);
 
@@ -159,7 +162,7 @@ watch(coverUrl, (newUrl) => {
     object-fit: cover;
     // filter: blur(30px);
     // transform: scale(1.2);
-    opacity: 0.3;
+    // opacity: 0.3;
     transition: filter 0.5s var(--ease), border-radius 0.5s var(--ease);
   }
 }

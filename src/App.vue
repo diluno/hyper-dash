@@ -28,6 +28,14 @@ onMounted(async () => {
     entities.value = ent;
   });
   colors.value = getColors();
+  // Set the colors as CSS variables on :root
+  if (colors.value && Array.isArray(colors.value)) {
+    const root = document.documentElement;
+    colors.value.forEach((c, i) => {
+      root.style.setProperty(`--bubble-color-${i+1}`, c.color);
+      root.style.setProperty(`--text-color-${i+1}`, c.textColor);
+    });
+  }
 });
 
 new DarkMode();
@@ -55,7 +63,7 @@ function sendMessage(_msg) {
         <Time />
         <Netatmo />
         <Sonos @sendMessage="sendMessage" />
-        <Plex />
+        <!--<Plex />-->
       </div>
     </main>
   </Suspense>

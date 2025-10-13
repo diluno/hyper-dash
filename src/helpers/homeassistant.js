@@ -7,8 +7,8 @@ import {
 
 class HomeAssistant {
   constructor() {
-    this.hassioUrl = 'http://homeassistant.local:8123';
-    // this.hassioUrl = 'https://hassio.dil.uno';
+    // this.hassioUrl = 'http://homeassistant.local:8123';
+    this.hassioUrl = 'https://hassio.dil.uno';
     this.token =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIzYTg1YjIxNGU3NjE0YjlmOGYxMTNhMTU0YWRkZGU0ZCIsImlhdCI6MTczNTg0NzQwMiwiZXhwIjoyMDUxMjA3NDAyfQ.L92_K-gAIvgYPNN_8qQfpsVoMEw_2HVSXFh_K0ravyQ';
   }
