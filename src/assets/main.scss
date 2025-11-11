@@ -1,5 +1,6 @@
 @import url("https://fonts.cdnfonts.com/css/satoshi");
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap');
 
 :root {
   --c-alarm: #f84a48;
@@ -12,17 +13,18 @@ html {
 }
 body {
   margin: 0;
-  font-family: "Manrope", Helvetica, sans-serif;
+  font-family: "Stack Sans Headline", Helvetica, sans-serif;
+  // font-family: "Manrope", Helvetica, sans-serif;
   font-optical-sizing: auto;
   background: var(--bubble-color-1);
   color: var(--bubble-color-4);
   margin: 0;
   cursor: none;
-  font-weight: 400;
+  font-weight: 200;
   line-height: 1.2;
 }
 body.dark {
-  background: var(--c-fg);
+  // background: var(--c-fg);
 }
 #app {
   max-width: 720px;
@@ -55,7 +57,7 @@ body.dark {
   position: relative;
   font-size: 1.75rem;
   line-height: 1;
-  font-weight: 400;
+  // font-weight: 400;
   box-sizing: border-box;
   // overflow: hidden;
 
@@ -80,7 +82,7 @@ body.dark {
 }
 .bubble--large {
   font-size: 4rem;
-  font-weight: 800;
+  font-weight: 500;
 }
 .bubble--large:first-child {
   margin-left: 0;
@@ -92,7 +94,7 @@ body.dark {
   color: var(--c-alarm);
   border-color: var(--c-alarm);
   transform: scale(1.1);
-  font-weight: 800;
+  font-weight: 600;
   z-index: 1;
 }
 .bubble--image {
